@@ -27,7 +27,7 @@ func NewDistributorsAuthDecorator(
 func (dg DistributorsAuthDecorator) AnteHandle(ctx sdk.Context, tx sdk.Tx, simulate bool, next sdk.AnteHandler) (newCtx sdk.Context, err error) {
 	if !simulate && !dg.distrKeeper.IsTestingMode() {
 		for i, msg := range tx.GetMsgs() {
-			ethTx, isEthTx := msg.(*types.MsgEthereumTx) // измените на ваш тип транзакции, если это не MsgEthereumTx
+			ethTx, isEthTx := msg.(*types.MsgEthereumTx)
 			if isEthTx {
 				txData, err := types.UnpackTxData(ethTx.Data)
 				if err != nil {

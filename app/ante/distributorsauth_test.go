@@ -42,10 +42,10 @@ func (suite AnteTestSuite) TestDeploySmartContracts() {
 		Address: addr.Hex(),
 		EndDate: 12345678901234,
 	}
-	// Разрешение адреса отправителя
+	// Add distributor address
 	suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distr)
 
-	// Проверка, что транзакция разрешена, если адрес отправителя разрешен
+	// Check is ok for correcrt distributor
 	_, err = dec.AnteHandle(suite.ctx, signedTx, false, NextFn)
 	suite.Require().NoError(err)
 
