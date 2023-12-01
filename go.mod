@@ -28,7 +28,7 @@ require (
 	github.com/rakyll/statik v0.1.7
 	github.com/regen-network/cosmos-proto v0.3.1
 	github.com/rs/cors v1.10.1
-	github.com/spf13/cast v1.5.0
+	github.com/spf13/cast v1.6.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.15.0
 	github.com/status-im/keycard-go v0.2.0
