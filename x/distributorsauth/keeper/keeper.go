@@ -60,14 +60,15 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
 }
 
-func (k *Keeper) AddDistributor(ctx sdk.Context, info types.DistributorInfo) {
+func (k *Keeper) AddDistributor(ctx sdk.Context, info types.DistributorInfo) error {
 	bech32Address, err := types.EnsureBech32Address(info.Address)
 	if err != nil {
-		return
+		return err
 	}
 
 	info.Address = bech32Address
 	k.addDistributor(ctx, info)
+	return nil
 }
 
 func (k *Keeper) addDistributor(ctx sdk.Context, info types.DistributorInfo) {
@@ -317,9 +318,27 @@ func (k Keeper) ValidateTransaction(ctx sdk.Context, address string) error {
 
 }
 
-func (Keeper) HandleAddDistributorProposal(ctx sdk.Context, p *types.AddDistributorProposal) error {
+func (k *Keeper) HandleAddDistributorProposal(ctx sdk.Context, p *types.AddDistributorProposal) error {
+	// check address is valid
+	_, err := types.EnsureBech32Address(p.Address)
+	if err != nil {
+		return sdkerrors.Wrap(types.ErrWrongDistributorAddress, p.Address)
+	}
+
+	// Create DistributorInfo
+	distributorInfo := types.DistributorInfo{
+		Address: p.Address,
+		EndDate: p.EndDate,
+	}
+
+	// Add distributor to store
+	err = k.AddDistributor(ctx, distributorInfo)
+	if err != nil {
+		return err
+	}
+
 	ctx.EventManager().EmitEvent(
-		types.AddDistributoProposalEvent(p.Address, p.EndDate),
+		types.AddDistributoProposalEvent(p.Address, strconv.FormatUint(p.EndDate, 10)),
 	)
 	return nil
 }

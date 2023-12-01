@@ -1,9 +1,9 @@
 syntax = "proto3";
 package entangle.distributorsauth;
 
-import "google/api/annotations.proto";
-import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
 // import "cosmos_proto/cosmos.proto";
 
 // this line is used by starport scaffolding # proto/tx/import
@@ -12,64 +12,71 @@ option go_package = "github.com/Entangle-Protocol/entangle-blockchain/x/distribu
 
 // Msg defines the Msg service.
 service Msg {
-  // Adding Distributor method
+  // AddDistributor method
   rpc AddDistributor(MsgAddDistributor) returns (MsgAddDistributorResponse) {
     option (google.api.http).post = "/entangle/distributor/add";
   };
-  // Remove Distributor method
+  // RemoveDistributor method
   rpc RemoveDistributor(MsgRemoveDistributor) returns (MsgRemoveDistributorResponse) {
     option (google.api.http).post = "/entangle/distributor/remove";
   };
-  // Adding Admin method
+  // AddAdmin method
   rpc AddAdmin(MsgAddAdmin) returns (MsgAddAdminResponse) {
     option (google.api.http).post = "/entangle/admin/add";
   };
-  // Remove Admin method
+  // RemoveAdmin method
   rpc RemoveAdmin(MsgRemoveAdmin) returns (MsgRemoveAdminResponse) {
     option (google.api.http).post = "/entangle/admin/remove";
   };
 }
 
+// MsgAddDistributor defines a AddDistributor message
 message MsgAddDistributor {
-  // bytes sender = 1 [(gogoproto.casttype) = "github.com/cosmos/cosmos-sdk/types.AccAddress"];
-  // option (gogoproto.goproto_getters) = false;
-  // this line is used by starport scaffolding # proto/tx/rpc
-  // authority is the address of the governance account.
+  // sender of the message
   string sender = 1;
+  // distributor_address is the address of the distributor account.
   string distributor_address = 2;
-  uint64 end_date            = 3;
+  // end_date is the date when the distributor account will be removed.
+  uint64 end_date = 3;
 
   // this line is used by starport scaffolding # proto/tx/message
 }
 
-// MsgSendResponse defines the Msg/Send response type.
+// MsgAddDistributorResponse defines the MsgAddDistributor response type.
 message MsgAddDistributorResponse {}
 
+// MsgRemoveDistributor defines a RemoveDistributor message
 message MsgRemoveDistributor {
+  // sender of the message
   string sender = 1;
-  // option (gogoproto.goproto_getters) = false;
-  // this line is used by starport scaffolding # proto/tx/rpc
-  // authority is the address of the governance account.
+  // distributor_address is the address of the distributor account.
   string distributor_address = 2;
   // this line is used by starport scaffolding # proto/tx/message
 }
 
-// MsgSendResponse defines the Msg/Send response type.
+// MsgRemoveDistributorResponse defines the MsgRemoveDistributor response type.
 message MsgRemoveDistributorResponse {}
 
+// MsgAddAdmin defines a AddAdmin message
 message MsgAddAdmin {
-  string  sender = 1;
-  string  admin_address = 2;
-  bool    edit_option     = 3;
+  // sender of the message
+  string sender = 1;
+  // admin_address is the address of the admin account.
+  string admin_address = 2;
+  // edit_option is the option to edit the admin account.
+  bool edit_option = 3;
 }
 
-// MsgSendResponse defines the Msg/Send response type.
+// MsgAddAdminResponse defines the MsgAddAdmin response type.
 message MsgAddAdminResponse {}
 
+// MsgRemoveAdmin defines a RemoveAdmin message
 message MsgRemoveAdmin {
+  // sender of the message
   string sender = 1;
+  // admin_address is the address of the admin account.
   string admin_address = 2;
 }
 
-// MsgSendResponse defines the Msg/Send response type.
+// MsgRemoveAdminResponse defines the MsgRemoveAdmin response type.
 message MsgRemoveAdminResponse {}

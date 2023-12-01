@@ -13,12 +13,17 @@ import (
 
 // InitGenesis initializes the module's state from a provided genesis state.
 func InitGenesis(ctx sdk.Context, k keeper.Keeper, accountKeeper types.AccountKeeper, genState types.GenesisState) {
-	fmt.Println("func InitGenesis")
 	for _, admin := range genState.Admins {
-		k.AddAdmin(ctx, admin)
+		err := k.AddAdmin(ctx, admin)
+		if err != nil {
+			panic(fmt.Errorf("couldn't add admin with address %s and edit_option %t", admin.Address, admin.EditOption))
+		}
 	}
 	for _, distributor := range genState.Distributors {
-		k.AddDistributor(ctx, distributor)
+		err := k.AddDistributor(ctx, distributor)
+		if err != nil {
+			panic(fmt.Errorf("couldn't add distributor with address %s and end_data %d", distributor.Address, distributor.EndDate))
+		}
 	}
 }
 

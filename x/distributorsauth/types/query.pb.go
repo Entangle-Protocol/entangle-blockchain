@@ -6,7 +6,7 @@ package types
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/gogo/protobuf/gogoproto"
+	_ "github.com/cosmos/gogoproto/gogoproto"
 	grpc1 "github.com/gogo/protobuf/grpc"
 	proto "github.com/gogo/protobuf/proto"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -443,13 +443,13 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type QueryClient interface {
-	// Queries  distributor info for all distributors
+	// Distributors info for all distributors
 	Distributors(ctx context.Context, in *QueryDistributorsRequest, opts ...grpc.CallOption) (*QueryDistributorsResponse, error)
-	// Queries distributor info for given distributor address.
+	// Distributor info for given distributor address.
 	Distributor(ctx context.Context, in *QueryDistributorRequest, opts ...grpc.CallOption) (*QueryDistributorResponse, error)
-	// Queries admin info for all admins
+	// Admins info for all admins
 	Admins(ctx context.Context, in *QueryAdminsRequest, opts ...grpc.CallOption) (*QueryAdminsResponse, error)
-	// Queries admin info for given admin address.
+	// Admin info for given admin address.
 	Admin(ctx context.Context, in *QueryAdminRequest, opts ...grpc.CallOption) (*QueryAdminResponse, error)
 }
 
@@ -499,13 +499,13 @@ func (c *queryClient) Admin(ctx context.Context, in *QueryAdminRequest, opts ...
 
 // QueryServer is the server API for Query service.
 type QueryServer interface {
-	// Queries  distributor info for all distributors
+	// Distributors info for all distributors
 	Distributors(context.Context, *QueryDistributorsRequest) (*QueryDistributorsResponse, error)
-	// Queries distributor info for given distributor address.
+	// Distributor info for given distributor address.
 	Distributor(context.Context, *QueryDistributorRequest) (*QueryDistributorResponse, error)
-	// Queries admin info for all admins
+	// Admins info for all admins
 	Admins(context.Context, *QueryAdminsRequest) (*QueryAdminsResponse, error)
-	// Queries admin info for given admin address.
+	// Admin info for given admin address.
 	Admin(context.Context, *QueryAdminRequest) (*QueryAdminResponse, error)
 }
 

@@ -215,7 +215,7 @@ Where proposal.json contains:
 			}
 
 			from := clientCtx.GetFromAddress()
-			content := types.NewAddDistributorProposal(proposal.Title, proposal.Description, proposal.Address, proposal.EndDate, proposal.Deposit)
+			content := types.NewAddDistributorProposal(proposal.Title, proposal.Description, proposal.Address, proposal.Deposit, proposal.EndDate)
 
 			msg, err := govtypes.NewMsgSubmitProposal(content, deposit, from)
 			if err != nil {

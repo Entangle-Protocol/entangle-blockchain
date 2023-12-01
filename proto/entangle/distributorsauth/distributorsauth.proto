@@ -1,26 +1,31 @@
 syntax = "proto3";
 package entangle.distributorsauth;
 
-import "google/api/annotations.proto";
-import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
 
 // this line is used by starport scaffolding # proto/tx/import
 
 option go_package = "github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types";
 
+// DistributorInfo is the struct of distributor
 message DistributorInfo {
-  string Address     = 1;
-  uint64 end_date   = 2;
+  // address of distributor
+  string address = 1;
+  // end_date of distributor
+  uint64 end_date = 2;
 }
 
+// Admin is the struct of admin
 message Admin {
+  // address of admin
   string address = 1;
+  // edit_option of admin
   bool edit_option = 2;
 }
 
-
-// AddDistributorProposal 
+// AddDistributorProposal
 // with a deposit
 message AddDistributorProposal {
   // option (gogoproto.goproto_getters)         = false;
@@ -29,17 +34,18 @@ message AddDistributorProposal {
   // string Title        = 1;
   // string Description  = 2;
   // DistributorInfo Distributor = 3 [(gogoproto.nullable) = false];
-  option (gogoproto.goproto_getters)  = false;
+  option (gogoproto.goproto_getters) = false;
   option (gogoproto.goproto_stringer) = true;
   option (cosmos_proto.implements_interface) = "cosmos.gov.v1beta1.Content";
 
-  string title       = 1 [(gogoproto.moretags) = "yaml:\"title\""];
+  // title of proposal
+  string title = 1 [(gogoproto.moretags) = "yaml:\"title\""];
+  // description of proposal
   string description = 2 [(gogoproto.moretags) = "yaml:\"description\""];
-  string address     = 3 [(gogoproto.moretags) = "yaml:\"address\""];
-  string end_date    = 4 [(gogoproto.moretags) = "yaml:\"end_date\""];
-  string deposit     = 5 [(gogoproto.moretags) = "yaml:\"deposit\""];
+  // address of distributor
+  string address = 3 [(gogoproto.moretags) = "yaml:\"address\""];
+  // end_date of distributor
+  uint64 end_date = 4 [(gogoproto.moretags) = "yaml:\"end_date\""];
+  // deposit of proposal
+  string deposit = 5 [(gogoproto.moretags) = "yaml:\"deposit\""];
 }
-
-
-
-

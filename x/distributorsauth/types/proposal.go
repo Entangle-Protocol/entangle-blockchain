@@ -17,7 +17,7 @@ func init() {
 	govtypes.RegisterProposalType(ProposalTypeAddDistributor)
 }
 
-func NewAddDistributorProposal(title, description, address, end_date, deposit string) *AddDistributorProposal {
+func NewAddDistributorProposal(title, description, address, deposit string, end_date uint64) *AddDistributorProposal {
 	return &AddDistributorProposal{title, description, address, end_date, deposit}
 }
 

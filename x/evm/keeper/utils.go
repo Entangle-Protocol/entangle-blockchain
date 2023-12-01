@@ -18,13 +18,6 @@ package keeper
 import (
 	"math/big"
 
-	// sdkmath "cosmossdk.io/math"
-	// sdk "github.com/cosmos/cosmos-sdk/types"
-	// sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	// authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
-
-	// evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
-
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"

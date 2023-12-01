@@ -12,31 +12,29 @@ option go_package = "github.com/Entangle-Protocol/entangle-blockchain/x/distribu
 
 // Query defines the gRPC querier service.
 service Query {
-
-  // Queries  distributor info for all distributors
+  // Distributors info for all distributors
   rpc Distributors(QueryDistributorsRequest) returns (QueryDistributorsResponse) {
-    option (google.api.http).get               = "/entangle-blockchain/distributors";
+    option (google.api.http).get = "/entangle-blockchain/distributors";
   }
 
-  // Queries distributor info for given distributor address.
+  // Distributor info for given distributor address.
   rpc Distributor(QueryDistributorRequest) returns (QueryDistributorResponse) {
-    option (google.api.http).get               = "/entangle-blockchain/{distributor_addr}/distributor";
+    option (google.api.http).get = "/entangle-blockchain/{distributor_addr}/distributor";
   }
 
-  // Queries admin info for all admins
+  // Admins info for all admins
   rpc Admins(QueryAdminsRequest) returns (QueryAdminsResponse) {
-    option (google.api.http).get               = "/entangle-blockchain/admins";
+    option (google.api.http).get = "/entangle-blockchain/admins";
   }
 
-  // Queries admin info for given admin address.
+  // Admin info for given admin address.
   rpc Admin(QueryAdminRequest) returns (QueryAdminResponse) {
-    option (google.api.http).get               = "/entangle-blockchain/{admin_addr}/admin";
+    option (google.api.http).get = "/entangle-blockchain/{admin_addr}/admin";
   }
 }
 
 // QueryDistributorsRequest is request type for Query/Distributors RPC method.
-message QueryDistributorsRequest {
-}
+message QueryDistributorsRequest {}
 
 // QueryDistributorsResponse is response type for the Query/Distributors RPC method
 message QueryDistributorsResponse {
@@ -57,8 +55,7 @@ message QueryDistributorResponse {
 }
 
 // QueryAdminsRequest is request type for Query/Admns RPC method.
-message QueryAdminsRequest {
-}
+message QueryAdminsRequest {}
 
 // QueryAdminsResponse is response type for the Query/Admins RPC method
 message QueryAdminsResponse {
@@ -77,7 +74,5 @@ message QueryAdminResponse {
   // admin defines the admin info.
   Admin admin = 1 [(gogoproto.nullable) = false];
 }
-
-
 
 // this line is used by starport scaffolding # 3

@@ -1,16 +1,17 @@
 syntax = "proto3";
 package entangle.distributorsauth;
 
-import "gogoproto/gogo.proto";
 import "entangle/distributorsauth/distributorsauth.proto";
+import "gogoproto/gogo.proto";
+
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types";
 
 // GenesisState defines the distributorsauth module's genesis state.
 message GenesisState {
-  // Admins list
+  // admins list
   repeated Admin admins = 1 [(gogoproto.nullable) = false];
-  // Distributors list
+  // distributors list
   repeated DistributorInfo distributors = 2 [(gogoproto.nullable) = false];
 }
