@@ -10,7 +10,7 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 )
 
-func (suite AnteTestSuite) TestEthSigVerificationDecorator() {
+func (suite *AnteTestSuite) TestEthSigVerificationDecorator() {
 	addr, privKey := tests.NewAddrKey()
 
 	signedTx := evmtypes.NewTxContract(suite.app.EvmKeeper.ChainID(), 1, big.NewInt(10), 1000, big.NewInt(1), nil, nil, nil, nil)

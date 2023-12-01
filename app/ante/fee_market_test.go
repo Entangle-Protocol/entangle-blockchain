@@ -12,7 +12,7 @@ import (
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 )
 
-func (suite AnteTestSuite) TestGasWantedDecorator() {
+func (suite *AnteTestSuite) TestGasWantedDecorator() {
 	suite.enableFeemarket = true
 	suite.SetupTest()
 	dec := ante.NewGasWantedDecorator(suite.app.EvmKeeper, suite.app.FeeMarketKeeper)

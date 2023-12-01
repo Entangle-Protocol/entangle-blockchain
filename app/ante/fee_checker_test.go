@@ -8,7 +8,6 @@ import (
 
 	"github.com/Entangle-Protocol/entangle-blockchain/encoding"
 	ethermint "github.com/Entangle-Protocol/entangle-blockchain/types"
-	"github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -154,7 +153,7 @@ func TestSDKTxFeeChecker(t *testing.T) {
 			func() sdk.Tx {
 				txBuilder := encodingConfig.TxConfig.NewTxBuilder()
 				txBuilder.SetGasLimit(1)
-				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(types.DefaultPriorityReduction).Add(sdk.NewInt(10)))))
+				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(evmtypes.DefaultPriorityReduction).Add(sdk.NewInt(10)))))
 				return txBuilder.GetTx()
 			},
 			"10000010aNGL",
@@ -170,7 +169,7 @@ func TestSDKTxFeeChecker(t *testing.T) {
 			func() sdk.Tx {
 				txBuilder := encodingConfig.TxConfig.NewTxBuilder().(authtx.ExtensionOptionsTxBuilder)
 				txBuilder.SetGasLimit(1)
-				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(types.DefaultPriorityReduction))))
+				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(evmtypes.DefaultPriorityReduction))))
 
 				option, err := codectypes.NewAnyWithValue(&ethermint.ExtensionOptionDynamicFeeTx{})
 				require.NoError(t, err)
@@ -190,10 +189,10 @@ func TestSDKTxFeeChecker(t *testing.T) {
 			func() sdk.Tx {
 				txBuilder := encodingConfig.TxConfig.NewTxBuilder().(authtx.ExtensionOptionsTxBuilder)
 				txBuilder.SetGasLimit(1)
-				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(types.DefaultPriorityReduction).Add(sdk.NewInt(10)))))
+				txBuilder.SetFeeAmount(sdk.NewCoins(sdk.NewCoin("aNGL", sdk.NewInt(10).Mul(evmtypes.DefaultPriorityReduction).Add(sdk.NewInt(10)))))
 
 				option, err := codectypes.NewAnyWithValue(&ethermint.ExtensionOptionDynamicFeeTx{
-					MaxPriorityPrice: sdk.NewInt(5).Mul(types.DefaultPriorityReduction),
+					MaxPriorityPrice: sdk.NewInt(5).Mul(evmtypes.DefaultPriorityReduction),
 				})
 				require.NoError(t, err)
 				txBuilder.SetExtensionOptions(option)
