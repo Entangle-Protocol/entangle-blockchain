@@ -129,6 +129,7 @@ func init() {
 	}
 
 	DefaultNodeHome = filepath.Join(userHomeDir, ".entangled")
+	sdk.DefaultPowerReduction = ethermint.PowerReduction
 }
 
 const appName = "entangled"
