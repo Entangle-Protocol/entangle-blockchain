@@ -249,6 +249,24 @@ func (suite *KeeperTestSuite) TestSetGetDistributor() {
 			uint64(0),
 		},
 		{
+			"add distributor and change end date to ethernal",
+			func() {
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(1674125669)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
+			},
+			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			uint64(0),
+		},
+		{
+			"add distributor and change end date to 0",
+			func() {
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(1674125669)})
+			},
+			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			uint64(1674125669),
+		},
+		{
 			"distributor with empty address",
 			func() {
 				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "", EndDate: uint64(0)})
