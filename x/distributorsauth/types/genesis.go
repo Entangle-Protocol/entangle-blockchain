@@ -18,7 +18,6 @@ const DefaultIndex uint64 = 1
 
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
-	fmt.Println("DefaultGenesis")
 	return &GenesisState{
 		Admins:       []Admin{},
 		Distributors: []DistributorInfo{},

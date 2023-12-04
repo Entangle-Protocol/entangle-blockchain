@@ -197,6 +197,17 @@ func (suite *KeeperTestSuite) TestRemoveAdmin() {
 			true,
 		},
 		{
+			"Remove admin succes by himself",
+			func(sender string, addr string, edit_option bool) {
+				/// Admin to remove
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: addr, EditOption: edit_option})
+			},
+			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
+			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
+			true,
+			true,
+		},
+		{
 			"Remove Admin success by Admin with edit wrights 16 base removed",
 			func(sender string, addr string, edit_option bool) {
 				/// Admin sender

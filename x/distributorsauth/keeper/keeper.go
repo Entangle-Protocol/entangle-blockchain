@@ -37,8 +37,6 @@ func NewKeeper(
 	at types.AccountKeeper,
 	testingMode bool,
 ) *Keeper {
-	fmt.Println("NewKeeper")
-
 	return &Keeper{
 		cdc:         cdc,
 		storeKey:    storeKey,
