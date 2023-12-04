@@ -179,16 +179,16 @@ func CmdSubmitDistributorsAuthProposal() *cobra.Command {
 The proposal details must be supplied via a JSON file.
 
 Example:
-$ %s tx gov submit-proposal add-distributor-gov  <path/to/proposal.json> --from=<key_or_address>
+$ %s tx gov submit-legacy-proposal add-distributor-gov  <path/to/proposal.json> --from=<key_or_address>
 
 Where proposal.json contains:
 
 {
-  "title": "Community Pool Spend",
-  "description": "Pay me some Atoms!",
-  "recipient": "%s1s5afhd6gxevu37mkqcvvsj8qeylhn0rz46zdlq",
-  "amount": "1000stake",
-  "deposit": "1000stake"
+  "title": "Add very new distributor",
+  "description": "Very honorable protocol integration",
+  "address": "%s1s5afhd6gxevu37mkqcvvsj8qeylhn0rz46zdlq",
+  "end_date": "1701363600",
+  "deposit": "10000000aNGL"
 }
 `,
 				version.AppName, bech32PrefixAccAddr,

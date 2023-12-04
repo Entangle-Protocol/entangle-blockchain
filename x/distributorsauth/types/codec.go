@@ -3,6 +3,7 @@ package types
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	cdctypes "github.com/cosmos/cosmos-sdk/codec/types"
+	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
 	// this line is used by starport scaffolding # 1
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
@@ -16,6 +17,8 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	// this line is used by starport scaffolding # 3
 
 	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
+	registry.RegisterImplementations((*govtypes.Content)(nil), &AddDistributorProposal{})
+
 }
 
 var (

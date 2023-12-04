@@ -428,6 +428,16 @@ func NewEthermintApp(
 		appCodec, keys[ibchost.StoreKey], app.GetSubspace(ibchost.ModuleName), app.StakingKeeper, app.UpgradeKeeper, scopedIBCKeeper,
 	)
 
+	// entangle
+	app.DistributorsAuthKeeper = *distributorsauthmodulekeeper.NewKeeper(
+		appCodec,
+		keys[distributorsauthmoduletypes.StoreKey],
+		keys[distributorsauthmoduletypes.MemStoreKey],
+		&app.AccountKeeper,
+		testingMode,
+	)
+	distributorsauthModule := distributorsauthmodule.NewAppModule(appCodec, app.DistributorsAuthKeeper, app.AccountKeeper, app.BankKeeper)
+
 	// register the proposal types
 	govRouter := govv1beta1.NewRouter()
 	govRouter.AddRoute(govtypes.RouterKey, govv1beta1.ProposalHandler).
@@ -472,17 +482,6 @@ func NewEthermintApp(
 	)
 	// If evidence needs to be handled for the app, set routes in router here and seal
 	app.EvidenceKeeper = *evidenceKeeper
-
-	// entangle
-	app.DistributorsAuthKeeper = *distributorsauthmodulekeeper.NewKeeper(
-		appCodec,
-		keys[distributorsauthmoduletypes.StoreKey],
-		keys[distributorsauthmoduletypes.MemStoreKey],
-		&app.AccountKeeper,
-		testingMode,
-	)
-	distributorsauthModule := distributorsauthmodule.NewAppModule(appCodec, app.DistributorsAuthKeeper, app.AccountKeeper, app.BankKeeper)
-
 	/****  Module Options ****/
 
 	// NOTE: we may consider parsing `appOpts` inside module constructors. For the moment
