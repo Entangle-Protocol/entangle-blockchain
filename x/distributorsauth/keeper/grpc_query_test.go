@@ -1,6 +1,8 @@
 package keeper_test
 
 import (
+	"time"
+
 	types "github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 )
 
@@ -8,6 +10,8 @@ func (suite *KeeperTestSuite) TestQueryDistributor() {
 	var (
 		expRes *types.QueryDistributorResponse
 	)
+
+	timeInFuture := uint64(time.Now().Unix()) + uint64(100)
 
 	testCases := []struct {
 		name     string
@@ -27,7 +31,7 @@ func (suite *KeeperTestSuite) TestQueryDistributor() {
 				expRes = &types.QueryDistributorResponse{Distributor: distr}
 			},
 			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
-			uint64(123),
+			timeInFuture,
 		},
 	}
 	for _, tc := range testCases {
@@ -43,6 +47,8 @@ func (suite *KeeperTestSuite) TestQueryDistributors() {
 	var (
 		expRes *types.QueryDistributorsResponse
 	)
+	timeInFuture := uint64(time.Now().Unix()) + uint64(100)
+	zeroTime := uint64(0)
 
 	testCases := []struct {
 		name     string
@@ -56,7 +62,7 @@ func (suite *KeeperTestSuite) TestQueryDistributors() {
 				expRes = &types.QueryDistributorsResponse{}
 			},
 			"",
-			uint64(0),
+			zeroTime,
 		},
 		{
 			"pass with 1 distributor",
@@ -70,7 +76,7 @@ func (suite *KeeperTestSuite) TestQueryDistributors() {
 				expRes = &types.QueryDistributorsResponse{Distributors: []types.DistributorInfo{distr}}
 			},
 			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
-			uint64(123),
+			timeInFuture,
 		},
 	}
 	for _, tc := range testCases {

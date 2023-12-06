@@ -64,6 +64,10 @@ func (k *Keeper) AddDistributor(ctx sdk.Context, info types.DistributorInfo) err
 		return err
 	}
 
+	if types.CheckDistrubutorEndDateExpire(ctx, info.GetEndDate()) {
+		return sdkerrors.Wrap(types.ErrDistributorEndDateLessThenBlockTime, info.Address)
+	}
+
 	info.Address = bech32Address
 	k.addDistributor(ctx, info)
 	return nil

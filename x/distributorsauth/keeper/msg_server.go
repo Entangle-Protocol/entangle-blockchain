@@ -33,9 +33,10 @@ func (s msgServer) AddDistributor(goCtx context.Context, msg *types.MsgAddDistri
 		EndDate: msg.EndDate,
 	}
 
-	ctx.BlockTime()
-
-	s.Keeper.AddDistributor(ctx, DistributorInfo)
+	err = s.Keeper.AddDistributor(ctx, DistributorInfo)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgAddDistributorResponse{}, nil
 }

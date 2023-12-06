@@ -1,12 +1,17 @@
 package keeper_test
 
 import (
+	"time"
+
 	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 )
 
 func (suite *KeeperTestSuite) TestAddDistributor() {
+	timeNow := uint64(time.Now().Unix())
+	timeInFuture := timeNow + uint64(100)
+	zeroTime := uint64(0)
 
 	testCases := []struct {
 		name                string
@@ -23,17 +28,17 @@ func (suite *KeeperTestSuite) TestAddDistributor() {
 			},
 			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
 			"ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc",
-			uint64(1234),
+			timeInFuture,
 			true,
 		},
 		{
 			"Add distributor failed by Distributor",
 			func(addr string) {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: addr, EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: addr, EndDate: zeroTime})
 			},
 			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
 			"ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc",
-			uint64(1234),
+			timeInFuture,
 			false,
 		},
 		{
@@ -41,7 +46,7 @@ func (suite *KeeperTestSuite) TestAddDistributor() {
 			func(addr string) {},
 			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
 			"ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc",
-			uint64(1234),
+			timeInFuture,
 			false,
 		},
 	}

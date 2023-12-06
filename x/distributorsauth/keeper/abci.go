@@ -1,6 +1,7 @@
 package keeper
 
 import (
+	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 	"github.com/Entangle-Protocol/entangle-blockchain/x/evm/keeper"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	abci "github.com/tendermint/tendermint/abci/types"
@@ -16,8 +17,7 @@ func (k *Keeper) EndBlock(ctx sdk.Context, req abci.RequestEndBlock) []abci.Vali
 	}
 
 	for _, distributor := range distributors {
-		endDate := distributor.GetEndDate()
-		if endDate > 0 && endDate < uint64(ctx.BlockTime().Unix()) {
+		if types.CheckDistrubutorEndDateExpire(ctx, distributor.GetEndDate()) {
 			k.RemoveDistributor(ctx, distributor.Address)
 		}
 	}

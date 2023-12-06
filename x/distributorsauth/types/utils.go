@@ -28,3 +28,8 @@ func EnsureBech32Address(address string) (string, error) {
 
 	return bech32Address, nil
 }
+
+func CheckDistrubutorEndDateExpire(ctx sdk.Context, endDate uint64) bool {
+	blockTime := uint64(ctx.BlockTime().Unix())
+	return (endDate > 0 && endDate < blockTime)
+}

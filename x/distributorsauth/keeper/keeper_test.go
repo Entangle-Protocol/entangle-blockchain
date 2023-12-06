@@ -194,85 +194,91 @@ func (suite *KeeperTestSuite) CommitAfter(t time.Duration) {
 }
 
 func (suite *KeeperTestSuite) TestSetGetDistributor() {
+	timeNow := uint64(time.Now().Unix())
+	timeInFuture := timeNow + uint64(100)
+	timeInPast := timeNow - uint64(100)
+	zeroTime := uint64(0)
+
 	testCases := []struct {
 		name     string
 		malleate func()
 		address  string
 		end_date uint64
+		result   bool
 	}{
 		{
 			"distributor with end date in future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: timeInFuture})
 			},
 			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
-			uint64(1234567890123),
+			timeInFuture,
+			true,
 		},
 		{
 			"distributor with end date in future hex",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
 			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
-			uint64(1234567890123),
+			timeInFuture,
+			true,
 		},
 		{
 			"distributor with end date in future 16 base ",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
 			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
-			uint64(1234567890123),
+			timeInFuture,
+			true,
 		},
 		{
 			"distributor with end date in past",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: uint64(1674125669)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: timeInPast})
 			},
 			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
-			uint64(1674125669),
-		},
-		{
-			"distributor with end date 1",
-			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc", EndDate: uint64(1)})
-			},
-			"ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc",
-			uint64(1),
+			timeInPast,
+			false,
 		},
 		{
 			"distributor with end date 0",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
 			},
 			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
-			uint64(0),
+			zeroTime,
+			true,
 		},
 		{
 			"add distributor and change end date to ethernal",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(1674125669)})
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: timeInFuture})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
 			},
 			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
-			uint64(0),
+			zeroTime,
+			true,
 		},
 		{
-			"add distributor and change end date to 0",
+			"add distributor and change end date to future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(1674125669)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: timeInFuture})
 			},
 			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
-			uint64(1674125669),
+			timeInFuture,
+			true,
 		},
 		{
 			"distributor with empty address",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "", EndDate: zeroTime})
 			},
 			"",
-			uint64(0),
+			zeroTime,
+			false,
 		},
 	}
 	for _, tc := range testCases {
@@ -280,7 +286,7 @@ func (suite *KeeperTestSuite) TestSetGetDistributor() {
 		tc.malleate()
 
 		distributor, err := suite.app.DistributorsAuthKeeper.GetDistributor(suite.ctx, tc.address)
-		if tc.address != "" {
+		if tc.result {
 			suite.Require().NoError(err)
 			suite.Require().Equal(tc.address, distributor.Address, tc.name)
 			suite.Require().Equal(tc.end_date, distributor.EndDate, tc.name)
@@ -364,6 +370,11 @@ func (suite *KeeperTestSuite) TestSetGetAdmin() {
 }
 
 func (suite *KeeperTestSuite) TestSetValidateDistributor() {
+	timeNow := uint64(time.Now().Unix())
+	timeInFuture := timeNow + uint64(100)
+	timeInPast := timeNow - uint64(100)
+	zeroTime := uint64(0)
+
 	testCases := []struct {
 		name     string
 		malleate func()
@@ -373,7 +384,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with end date in future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: timeInFuture})
 			},
 			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
 			true,
@@ -381,7 +392,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with end date in future hex",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
 			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
 			true,
@@ -389,7 +400,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with end date in future 16 base",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
 			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
 			true,
@@ -397,23 +408,15 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with end date in past",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: uint64(1674125669)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: timeInPast})
 			},
 			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
-			true,
-		},
-		{
-			"distributor with end date 1",
-			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc", EndDate: uint64(1)})
-			},
-			"ethm1trhgn3un9wqlxhxwxspxaaalnynr4539v8vdmc",
-			true,
+			false,
 		},
 		{
 			"distributor with end date 0",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
 			},
 			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
 			true,
@@ -435,7 +438,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with empty address",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "", EndDate: zeroTime})
 			},
 			"",
 			false,
