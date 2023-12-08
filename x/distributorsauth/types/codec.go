@@ -11,6 +11,10 @@ import (
 
 func RegisterCodec(cdc *codec.LegacyAmino) {
 	// this line is used by starport scaffolding # 2
+	cdc.RegisterConcrete(&MsgAddAdmin{}, "entangle/distributorsauth/MsgAddAdmin", nil)
+	cdc.RegisterConcrete(&MsgRemoveAdmin{}, "entangle/distributorsauth/MsgRemoveAdmin", nil)
+	cdc.RegisterConcrete(&MsgAddDistributor{}, "entangle/distributorsauth/MsgAddDistributor", nil)
+	cdc.RegisterConcrete(&MsgRemoveDistributor{}, "entangle/distributorsauth/MsgRemoveDistributor", nil)
 }
 
 func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
