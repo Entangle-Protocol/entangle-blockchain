@@ -124,13 +124,14 @@ func (k *Keeper) GetDistributors(ctx sdk.Context) ([]types.DistributorInfo, erro
 	return distrList, nil
 }
 
-func (k *Keeper) RemoveDistributor(ctx sdk.Context, address string) {
+func (k *Keeper) RemoveDistributor(ctx sdk.Context, address string) error {
 	bech32Address, err := types.EnsureBech32Address(address)
 	if err != nil {
-		return
+		return err
 	}
 
 	k.removeDistributor(ctx, bech32Address)
+	return nil
 }
 
 func (k *Keeper) removeDistributor(ctx sdk.Context, address string) {
@@ -218,13 +219,14 @@ func (k Keeper) GetAdmins(ctx sdk.Context) ([]types.Admin, error) {
 	return AdminList, nil
 }
 
-func (k *Keeper) RemoveAdmin(ctx sdk.Context, address string) {
+func (k *Keeper) RemoveAdmin(ctx sdk.Context, address string) error {
 	bech32Address, err := types.EnsureBech32Address(address)
 	if err != nil {
-		return
+		return err
 	}
 
 	k.removeAdmin(ctx, bech32Address)
+	return nil
 }
 
 func (k *Keeper) removeAdmin(ctx sdk.Context, address string) {
