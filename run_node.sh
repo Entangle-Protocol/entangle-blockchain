@@ -1,6 +1,6 @@
 #!/bin/sh
 CHAINID="entangle_33133-1"
-MONIKER="validator"
+MONIKER="my_validator"
 LOGLEVEL="info"
 
 # validate dependencies are installed
@@ -11,5 +11,7 @@ entangled init $MONIKER --chain-id $CHAINID
 
 cp -f config/genesis.json $HOME/.entangled/config/
 cp -f config/config.toml $HOME/.entangled/config/ 
+cp -f config/app.toml $HOME/.entangled/config/ 
+cp -f config/client.toml $HOME/.entangled/config/ 
 
-entangled start --pruning=nothing --evm.tracer=json --log_level $LOGLEVEL --minimum-gas-prices=0.0001aNGL --json-rpc.api eth,txpool,personal,net,debug,web3,miner --api.enable --api.enabled-unsafe-cors
+entangled start --log_level $LOGLEVEL 
