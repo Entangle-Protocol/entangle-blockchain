@@ -3,11 +3,12 @@ package keeper
 import (
 	"context"
 
-	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+
+	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 )
 
 type msgServer struct {
@@ -49,7 +50,10 @@ func (s msgServer) RemoveDistributor(goCtx context.Context, msg *types.MsgRemove
 		return nil, err
 	}
 
-	s.Keeper.RemoveDistributor(ctx, msg.DistributorAddress)
+	err = s.Keeper.RemoveDistributor(ctx, msg.DistributorAddress)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgRemoveDistributorResponse{}, nil
 }
@@ -67,7 +71,10 @@ func (s msgServer) AddAdmin(goCtx context.Context, msg *types.MsgAddAdmin) (*typ
 		EditOption: msg.EditOption,
 	}
 
-	s.Keeper.AddAdmin(ctx, AdminInfo)
+	err = s.Keeper.AddAdmin(ctx, AdminInfo)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgAddAdminResponse{}, nil
 }
@@ -80,7 +87,10 @@ func (s msgServer) RemoveAdmin(goCtx context.Context, msg *types.MsgRemoveAdmin)
 		return nil, err
 	}
 
-	s.Keeper.RemoveAdmin(ctx, msg.AdminAddress)
+	err = s.Keeper.RemoveAdmin(ctx, msg.AdminAddress)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgRemoveAdminResponse{}, nil
 }
