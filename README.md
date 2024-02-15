@@ -95,7 +95,7 @@ sh run_node.sh
 
 - [Official Website](https://www.entangle.fi/)
 - [Twitter](https://twitter.com/Entanglefi)
-- [Discord](https://discord.com/invite/entanglefi)
+- [Discord](https://discord.com/invite/entangle)
 
 ## Contributing
 
