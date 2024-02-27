@@ -7,7 +7,7 @@ parent:
   <h1> Ethermint </h1>
 </div>
 
-[Entangle](https://www.entangle.fi/) blockchain node based on Ethermint - a scalable and interoperable Ethereum library, built on Proof-of-Stake with fast-finality using the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/) which runs on top of [Tendermint Core](https://github.com/tendermint/tendermint) consensus engine.
+[Entangle](https://www.entangle.fi/) blockchain node based on Ethermint - a scalable and interoperable Ethereum library, built on Proof-of-Stake with fast-finality using the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/) which runs on top of [Tendermint Core](https://github.com/cometbft/cometbft) consensus engine.
 
 **Note**: Requires [Go 1.19+](https://golang.org/dl/)
 
@@ -20,7 +20,7 @@ You can check the instructions to [Run a Node](https://entangle-protocol.gitbook
 #### Hardware Requirements
 
 |         | Mainnet                      | Testnet                      |
-|---------| -----------                  | -----------                  |
+| ------- | ---------------------------- | ---------------------------- |
 | CPU     | 4 or more physical CPU cores | 2 or more physical CPU cores |
 | RAM     | 16GB+                        | 8GB+                         |
 | Storage | 500GB+ SSD                   | 250GB+ SSD                   |
@@ -64,32 +64,32 @@ sh run_node.sh
 
 7. Receiving NGL Tokens to the Account
 
-    To add an account to MetaMask, you need to obtain the private key of your account. You can do this using the command:
+   To add an account to MetaMask, you need to obtain the private key of your account. You can do this using the command:
 
-    ```bash
-    entangled keys unsafe-export-eth-key <key_name>
-    ```
+   ```bash
+   entangled keys unsafe-export-eth-key <key_name>
+   ```
 
-    The obtained private key can be used to import the account into MetaMask. Afterward, you can acquire NGL tokens for the account using the Entangle faucet via the [Discord](https://discord.com/invite/entanglefi).
+   The obtained private key can be used to import the account into MetaMask. Afterward, you can acquire NGL tokens for the account using the Entangle faucet via the [Discord](https://discord.com/invite/entanglefi).
 
 8. Starting a Validator
-    
-    As the `amount`, specify the number of tokens you are staking for the Validator, and as the `from`, use the key name used in the [Validator Account Generation step](#item4).
 
-    ```bash
-    entangled tx staking create-validator \
-    --amount="5000000000000000000aNGL" \
-    --pubkey=$(entangled tendermint show-validator) \
-    --moniker="validator" \
-    --chain-id=entangle_33133-1 \
-    --commission-rate="0.10" \
-    --commission-max-rate="0.20" \
-    --commission-max-change-rate="0.01" \
-    --min-self-delegation="1" \
-    --gas=500000 \
-    --gas-prices="10aNGL" \
-    --from=<key_name>
-    ```
+   As the `amount`, specify the number of tokens you are staking for the Validator, and as the `from`, use the key name used in the [Validator Account Generation step](#item4).
+
+   ```bash
+   entangled tx staking create-validator \
+   --amount="5000000000000000000aNGL" \
+   --pubkey=$(entangled tendermint show-validator) \
+   --moniker="validator" \
+   --chain-id=entangle_33133-1 \
+   --commission-rate="0.10" \
+   --commission-max-rate="0.20" \
+   --commission-max-change-rate="0.01" \
+   --min-self-delegation="1" \
+   --gas=500000 \
+   --gas-prices="10aNGL" \
+   --from=<key_name>
+   ```
 
 ## Community
 

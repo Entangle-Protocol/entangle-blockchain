@@ -5,10 +5,10 @@ import (
 	"io"
 	"testing"
 
+	"cosmossdk.io/simapp"
 	"github.com/Entangle-Protocol/entangle-blockchain/encoding"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
+	abci "github.com/cometbft/cometbft/abci/types"
+	"github.com/cometbft/cometbft/libs/log"
 	dbm "github.com/tendermint/tm-db"
 )
 

@@ -90,7 +90,7 @@ func NewParams(
 func DefaultParams() Params {
 	return Params{
 		NoBaseFee:                DefaultNoBaseFee,
-		BaseFeeChangeDenominator: params.BaseFeeChangeDenominator,
+		BaseFeeChangeDenominator: params.DefaultBaseFeeChangeDenominator,
 		ElasticityMultiplier:     params.ElasticityMultiplier,
 		BaseFee:                  sdkmath.NewIntFromUint64(params.InitialBaseFee),
 		EnableHeight:             DefaultEnableHeight,

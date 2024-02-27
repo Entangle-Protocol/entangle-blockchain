@@ -6,9 +6,9 @@ import (
 	"github.com/Entangle-Protocol/entangle-blockchain/rpc/backend/mocks"
 	ethrpc "github.com/Entangle-Protocol/entangle-blockchain/rpc/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	tmtypes "github.com/tendermint/tendermint/types"
 )
 
 func (suite *BackendTestSuite) TestGetLogs() {

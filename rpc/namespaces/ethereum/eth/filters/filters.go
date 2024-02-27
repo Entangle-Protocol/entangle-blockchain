@@ -24,9 +24,9 @@ import (
 	"github.com/Entangle-Protocol/entangle-blockchain/rpc/backend"
 	"github.com/Entangle-Protocol/entangle-blockchain/rpc/types"
 
+	"github.com/cometbft/cometbft/libs/log"
+	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 	"github.com/pkg/errors"
-	"github.com/tendermint/tendermint/libs/log"
-	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
 
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
