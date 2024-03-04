@@ -20,11 +20,11 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 
-	"cosmossdk.io/simapp"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
 	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/cometbft/cometbft/libs/log"
+	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 )
 
@@ -177,9 +177,10 @@ func setupChain(localMinGasPricesStr string) {
 		app.DefaultNodeHome,
 		5,
 		encoding.MakeConfig(app.ModuleBasics),
-		simapp.EmptyAppOptions{},
+		simtestutil.NewAppOptionsWithFlagHome(app.DefaultNodeHome),
 		true,
 		baseapp.SetMinGasPrices(localMinGasPricesStr),
+		baseapp.SetChainID(app.ChainID),
 	)
 
 	genesisState := app.NewTestGenesisState(newapp.AppCodec())
