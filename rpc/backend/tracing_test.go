@@ -7,6 +7,7 @@ import (
 	"github.com/Entangle-Protocol/entangle-blockchain/indexer"
 	"github.com/Entangle-Protocol/entangle-blockchain/rpc/backend/mocks"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmlog "github.com/cometbft/cometbft/libs/log"
 	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
@@ -15,7 +16,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	dbm "github.com/tendermint/tm-db"
 )
 
 func (suite *BackendTestSuite) TestTraceTransaction() {

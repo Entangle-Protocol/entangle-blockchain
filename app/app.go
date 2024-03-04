@@ -12,10 +12,10 @@ import (
 	"github.com/rakyll/statik/fs"
 	"github.com/spf13/cast"
 
+	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/cometbft/cometbft/libs/log"
 	tmos "github.com/cometbft/cometbft/libs/os"
-	dbm "github.com/tendermint/tm-db"
 
 	// "cosmossdk.io/simapp"
 	simappparams "cosmossdk.io/simapp/params"
@@ -97,6 +97,7 @@ import (
 	porttypes "github.com/cosmos/ibc-go/v7/modules/core/05-port/types"
 	ibchost "github.com/cosmos/ibc-go/v7/modules/core/24-host"
 	ibckeeper "github.com/cosmos/ibc-go/v7/modules/core/keeper"
+	"github.com/cosmos/ibc-go/v7/testing/simapp"
 
 	// unnamed import of statik for swagger UI support
 	_ "github.com/Entangle-Protocol/entangle-blockchain/client/docs/statik"

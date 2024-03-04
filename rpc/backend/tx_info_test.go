@@ -9,6 +9,7 @@ import (
 	rpctypes "github.com/Entangle-Protocol/entangle-blockchain/rpc/types"
 	ethermint "github.com/Entangle-Protocol/entangle-blockchain/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmlog "github.com/cometbft/cometbft/libs/log"
 	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
@@ -16,7 +17,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	dbm "github.com/tendermint/tm-db"
 	"google.golang.org/grpc/metadata"
 )
 

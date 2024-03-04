@@ -463,7 +463,7 @@ schema = 3
     version = "v0.34.27"
     hash = "sha256-BbpfLcLRf6PwB1xmgkhTm9ckZekelrDUlXDX0/FSMU8="
     replaced = "github.com/cometbft/cometbft"
-  [mod."github.com/tendermint/tm-db"]
+  [mod."github.com/cometbft/cometbft-db"]
     version = "v0.6.7"
     hash = "sha256-hl/3RrBrpkk2zA6dmrNlIYKs1/GfqegSscDSkA5Pjlo="
   [mod."github.com/tidwall/btree"]

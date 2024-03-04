@@ -20,6 +20,7 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 	rpctypes "github.com/Entangle-Protocol/entangle-blockchain/rpc/types"
+	dbm "github.com/cometbft/cometbft-db"
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/cometbft/cometbft/libs/log"
 	tmtypes "github.com/cometbft/cometbft/types"
@@ -28,7 +29,6 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authante "github.com/cosmos/cosmos-sdk/x/auth/ante"
 	"github.com/ethereum/go-ethereum/common"
-	dbm "github.com/tendermint/tm-db"
 
 	ethermint "github.com/Entangle-Protocol/entangle-blockchain/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
