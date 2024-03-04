@@ -30,7 +30,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/server/types"
 	"github.com/cosmos/cosmos-sdk/version"
 
-	tmcmd "github.com/cometbft/cometbft/cmd/cometbft/commands"
+	tcmd "github.com/cometbft/cometbft/cmd/cometbft/commands"
 	tmlog "github.com/cometbft/cometbft/libs/log"
 	rpcclient "github.com/cometbft/cometbft/rpc/jsonrpc/client"
 )
@@ -52,8 +52,8 @@ func AddCommands(
 		sdkserver.ShowValidatorCmd(),
 		sdkserver.ShowAddressCmd(),
 		sdkserver.VersionCmd(),
-		tmcmd.ResetAllCmd,
-		tmcmd.ResetStateCmd,
+		tcmd.ResetAllCmd,
+		tcmd.ResetStateCmd,
 	)
 
 	startCmd := StartCmd(opts)
