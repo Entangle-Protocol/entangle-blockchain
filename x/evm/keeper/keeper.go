@@ -123,7 +123,7 @@ func NewKeeper(
 
 // Logger returns a module-specific logger.
 func (k Keeper) Logger(ctx sdk.Context) log.Logger {
-	return ctx.Logger().With("module", types.ModuleName)
+	return ctx.Logger().With("module", "x/"+types.ModuleName)
 }
 
 // WithChainID sets the chain id to the local variable in the keeper
