@@ -85,7 +85,7 @@ func SetupWithDB(isCheckTx bool, patchGenesis func(*EthermintApp, simapp.Genesis
 		5,
 		encoding.MakeConfig(ModuleBasics),
 		simtestutil.NewAppOptionsWithFlagHome(DefaultNodeHome),
-		true,
+		false,
 		baseapp.SetChainID(ChainID),
 	)
 	if !isCheckTx {

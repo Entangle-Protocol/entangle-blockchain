@@ -31,7 +31,7 @@ func TestEthermintAppExport(t *testing.T) {
 		0,
 		encoding.MakeConfig(ModuleBasics),
 		simtestutil.NewAppOptionsWithFlagHome(DefaultNodeHome),
-		true,
+		false,
 		baseapp.SetChainID(ChainID),
 	)
 	_, err := app2.ExportAppStateAndValidators(false, []string{}, []string{})
