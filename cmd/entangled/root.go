@@ -315,13 +315,13 @@ func (a appCreator) appExport(
 	}
 
 	if height != -1 {
-		ethermintApp = app.NewEthermintApp(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts, true)
+		ethermintApp = app.NewEthermintApp(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts, true, baseapp.SetChainID(app.ChainID))
 
 		if err := ethermintApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		ethermintApp = app.NewEthermintApp(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts, true)
+		ethermintApp = app.NewEthermintApp(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts, true, baseapp.SetChainID(app.ChainID))
 	}
 
 	return ethermintApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs, modulesToExport)
