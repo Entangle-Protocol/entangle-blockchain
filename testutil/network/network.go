@@ -94,7 +94,8 @@ func NewAppConstructor(encodingCfg params.EncodingConfig, chainID string) AppCon
 			0,
 			encodingCfg,
 			simtestutil.NewAppOptionsWithFlagHome(val.Ctx.Config.RootDir),
-			true,
+			false,
+			baseapp.SetPruning(pruningtypes.NewPruningOptionsFromString(val.AppConfig.Pruning)),
 			baseapp.SetMinGasPrices(val.AppConfig.MinGasPrices),
 			baseapp.SetChainID(chainID),
 		)
