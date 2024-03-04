@@ -12,7 +12,7 @@ import (
 	kmultisig "github.com/cosmos/cosmos-sdk/crypto/keys/multisig"
 	"github.com/stretchr/testify/suite"
 
-	"cosmossdk.io/simapp"
+	amino "github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256r1"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
@@ -1357,7 +1357,7 @@ func (suite *AnteTestSuite) TestAnteHandlerWithParams() {
 func (suite *AnteTestSuite) TestConsumeSignatureVerificationGas() {
 	params := authtypes.DefaultParams()
 	msg := []byte{1, 2, 3, 4}
-	cdc := simapp.MakeTestEncodingConfig().Amino
+	cdc := amino.NewLegacyAmino()
 
 	p := authtypes.DefaultParams()
 	skR1, _ := secp256r1.GenPrivKey()
