@@ -23,7 +23,6 @@ import (
 
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 
 	dbm "github.com/cometbft/cometbft-db"
 	tmcfg "github.com/cometbft/cometbft/config"
@@ -255,21 +254,25 @@ func (a appCreator) newApp(logger tmlog.Logger, db dbm.DB, traceStore io.Writer,
 	)
 
 	// Setup chainId
-	chainID := cast.ToString(appOpts.Get(flags.FlagChainID))
-	if len(chainID) == 0 {
-		v := viper.New()
-		v.AddConfigPath(filepath.Join(home, "config"))
-		v.SetConfigName("client")
-		v.SetConfigType("toml")
-		if err := v.ReadInConfig(); err != nil {
-			panic(err)
+	/*
+		chainID := cast.ToString(appOpts.Get(flags.FlagChainID))
+		if len(chainID) == 0 {
+			v := viper.New()
+			v.AddConfigPath(filepath.Join(home, "config"))
+			v.SetConfigName("client")
+			v.SetConfigType("toml")
+			if err := v.ReadInConfig(); err != nil {
+				panic(err)
+			}
+			conf := new(config.ClientConfig)
+			if err := v.Unmarshal(conf); err != nil {
+				panic(err)
+			}
+			chainID = conf.ChainID
 		}
-		conf := new(config.ClientConfig)
-		if err := v.Unmarshal(conf); err != nil {
-			panic(err)
-		}
-		chainID = conf.ChainID
-	}
+	*/
+
+	const chainID = "ethermint_9000-1"
 
 	ethermintApp := app.NewEthermintApp(
 		logger, db, traceStore, true, skipUpgradeHeights,
