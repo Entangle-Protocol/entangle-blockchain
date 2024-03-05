@@ -1,6 +1,8 @@
 package distributorsauth
 
 import (
+	"math/rand"
+
 	"github.com/Entangle-Protocol/entangle-blockchain/testutil/sample"
 	distributorsauthsimulation "github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/simulation"
 	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
@@ -17,6 +19,7 @@ var (
 	_ = sample.AccAddress
 	_ = distributorsauthsimulation.FindAccount
 	//_ = simappparams.StakePerAccount
+	_ = rand.Rand{}
 	_ = simulation.MsgEntryKind
 	_ = baseapp.Paramspace
 )
@@ -58,4 +61,11 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
+}
+
+// ProposalMsgs returns msgs used for governance proposals for simulations.
+func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
+	return []simtypes.WeightedProposalMsg{
+		// this line is used by starport scaffolding # simapp/module/OpMsg
+	}
 }
