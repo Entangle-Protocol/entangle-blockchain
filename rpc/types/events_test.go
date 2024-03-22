@@ -26,11 +26,11 @@ func TestParseTxResult(t *testing.T) {
 				GasUsed: 21000,
 				Events: []abci.Event{
 					{Type: "coin_received", Attributes: []abci.EventAttribute{
-						{Key: []byte("receiver"), Value: []byte("ethm12luku6uxehhak02py4rcz65zu0swh7wjun6msa")},
+						{Key: []byte("receiver"), Value: []byte("ent12luku6uxehhak02py4rcz65zu0swh7wj8ych6f")},
 						{Key: []byte("amount"), Value: []byte("1252860basetcro")},
 					}},
 					{Type: "coin_spent", Attributes: []abci.EventAttribute{
-						{Key: []byte("spender"), Value: []byte("ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl")},
+						{Key: []byte("spender"), Value: []byte("ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt")},
 						{Key: []byte("amount"), Value: []byte("1252860basetcro")},
 					}},
 					{Type: evmtypes.EventTypeEthereumTx, Attributes: []abci.EventAttribute{
@@ -43,7 +43,7 @@ func TestParseTxResult(t *testing.T) {
 					}},
 					{Type: "message", Attributes: []abci.EventAttribute{
 						{Key: []byte("action"), Value: []byte("/ethermint.evm.v1.MsgEthereumTx")},
-						{Key: []byte("key"), Value: []byte("ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl")},
+						{Key: []byte("key"), Value: []byte("ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt")},
 						{Key: []byte("module"), Value: []byte("evm")},
 						{Key: []byte("sender"), Value: []byte(address)},
 					}},
@@ -82,11 +82,11 @@ func TestParseTxResult(t *testing.T) {
 				GasUsed: 21000,
 				Events: []abci.Event{
 					{Type: "coin_received", Attributes: []abci.EventAttribute{
-						{Key: []byte("receiver"), Value: []byte("ethm12luku6uxehhak02py4rcz65zu0swh7wjun6msa")},
+						{Key: []byte("receiver"), Value: []byte("ent12luku6uxehhak02py4rcz65zu0swh7wj8ych6f")},
 						{Key: []byte("amount"), Value: []byte("1252860basetcro")},
 					}},
 					{Type: "coin_spent", Attributes: []abci.EventAttribute{
-						{Key: []byte("spender"), Value: []byte("ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl")},
+						{Key: []byte("spender"), Value: []byte("ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt")},
 						{Key: []byte("amount"), Value: []byte("1252860basetcro")},
 					}},
 					{Type: evmtypes.EventTypeEthereumTx, Attributes: []abci.EventAttribute{
@@ -103,7 +103,7 @@ func TestParseTxResult(t *testing.T) {
 					}},
 					{Type: "message", Attributes: []abci.EventAttribute{
 						{Key: []byte("action"), Value: []byte("/ethermint.evm.v1.MsgEthereumTx")},
-						{Key: []byte("key"), Value: []byte("ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl")},
+						{Key: []byte("key"), Value: []byte("ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt")},
 						{Key: []byte("module"), Value: []byte("evm")},
 						{Key: []byte("sender"), Value: []byte(address)},
 					}},

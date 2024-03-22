@@ -32,7 +32,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "ethm12k2wt5f5jau5c28cfkpajw7y5snr37tr8yqsxs",
+            "address": "ent12k2wt5f5jau5c28cfkpajw7y5snr37trunzuvy",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -42,7 +42,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "ethm1790k9v035ad5hf2rtptds74j8g4rktnp3jp87r",
+            "address": "ent1790k9v035ad5hf2rtptds74j8g4rktnp29rt5h",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -52,7 +52,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "ethm1k2k7gnrxghwrdj3drehddcughk8cfqnmv6n6dr",
+            "address": "ent1k2k7gnrxghwrdj3drehddcughk8cfqnmhd3k8h",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -62,7 +62,7 @@
         {
           "@type": "/ethermint.types.v1.EthAccount",
           "base_account": {
-            "address": "ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+            "address": "ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
             "pub_key": null,
             "account_number": "0",
             "sequence": "0"
@@ -81,7 +81,7 @@
       },
       "balances": [
         {
-          "address": "ethm12k2wt5f5jau5c28cfkpajw7y5snr37tr8yqsxs",
+          "address": "ent12k2wt5f5jau5c28cfkpajw7y5snr37trunzuvy",
           "coins": [
             {
               "denom": "aNGL",
@@ -90,7 +90,7 @@
           ]
         },
         {
-          "address": "ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+          "address": "ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
           "coins": [
             {
               "denom": "aNGL",
@@ -99,7 +99,7 @@
           ]
         },
         {
-          "address": "ethm1k2k7gnrxghwrdj3drehddcughk8cfqnmv6n6dr",
+          "address": "ent1k2k7gnrxghwrdj3drehddcughk8cfqnmhd3k8h",
           "coins": [
             {
               "denom": "aNGL",
@@ -108,7 +108,7 @@
           ]
         },
         {
-          "address": "ethm1790k9v035ad5hf2rtptds74j8g4rktnp3jp87r",
+          "address": "ent1790k9v035ad5hf2rtptds74j8g4rktnp29rt5h",
           "coins": [
             {
               "denom": "aNGL",
@@ -157,7 +157,7 @@
     "distributorsauth": {
       "admins": [
         {
-          "address": "ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+          "address": "ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
           "edit_option": true
         }
       ],
@@ -230,8 +230,8 @@
                   "max_change_rate": "0.010000000000000000"
                 },
                 "min_self_delegation": "1",
-                "delegator_address": "ethm12k2wt5f5jau5c28cfkpajw7y5snr37tr8yqsxs",
-                "validator_address": "ethmvaloper12k2wt5f5jau5c28cfkpajw7y5snr37trg52u7d",
+                "delegator_address": "ent12k2wt5f5jau5c28cfkpajw7y5snr37trunzuvy",
+                "validator_address": "entvaloper12k2wt5f5jau5c28cfkpajw7y5snr37trwxjnas",
                 "pubkey": {
                   "@type": "/cosmos.crypto.ed25519.PubKey",
                   "key": "eEjeg38J4WmE2lrpEdeebr7uMr4iytBTNsbknLKKAZI="
