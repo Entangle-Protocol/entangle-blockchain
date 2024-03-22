@@ -4,7 +4,7 @@ parent:
 -->
 
 <div align="center">
-  <h1> Ethermint </h1>
+  <h1> Entangle </h1>
 </div>
 
 [Entangle](https://www.entangle.fi/) blockchain node based on Ethermint - a scalable and interoperable Ethereum library, built on Proof-of-Stake with fast-finality using the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/) which runs on top of [Tendermint Core](https://github.com/tendermint/tendermint) consensus engine.
