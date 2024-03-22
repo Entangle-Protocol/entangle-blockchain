@@ -27,6 +27,7 @@ import (
 	"github.com/Entangle-Protocol/entangle-blockchain/server/config"
 	ethermint "github.com/Entangle-Protocol/entangle-blockchain/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdkcrypto "github.com/cosmos/cosmos-sdk/crypto"
@@ -38,7 +39,6 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
-	tmtypes "github.com/tendermint/tendermint/types"
 )
 
 // Accounts returns the list of accounts available to this node.

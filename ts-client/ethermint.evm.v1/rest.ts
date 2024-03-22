@@ -284,7 +284,7 @@ export interface V1MsgEthereumTxResponse {
   /**
    * ethereum transaction hash in hex format. This hash differs from the
    * Tendermint sha256 hash of the transaction bytes. See
-   * https://github.com/tendermint/tendermint/issues/6539 for reference
+   * https://github.com/cometbft/cometbft/issues/6539 for reference
    */
   hash?: string;
 
@@ -505,11 +505,17 @@ export interface V1TraceConfig {
   enable_return_data?: boolean;
 }
 
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  ResponseType,
+} from "axios";
 
 export type QueryParamsType = Record<string | number, any>;
 
-export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
+export interface FullRequestParams
+  extends Omit<AxiosRequestConfig, "data" | "params" | "url" | "responseType"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
   /** request path */
@@ -524,11 +530,15 @@ export interface FullRequestParams extends Omit<AxiosRequestConfig, "data" | "pa
   body?: unknown;
 }
 
-export type RequestParams = Omit<FullRequestParams, "body" | "method" | "query" | "path">;
+export type RequestParams = Omit<
+  FullRequestParams,
+  "body" | "method" | "query" | "path"
+>;
 
-export interface ApiConfig<SecurityDataType = unknown> extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
+export interface ApiConfig<SecurityDataType = unknown>
+  extends Omit<AxiosRequestConfig, "data" | "cancelToken"> {
   securityWorker?: (
-    securityData: SecurityDataType | null,
+    securityData: SecurityDataType | null
   ) => Promise<AxiosRequestConfig | void> | AxiosRequestConfig | void;
   secure?: boolean;
   format?: ResponseType;
@@ -547,8 +557,16 @@ export class HttpClient<SecurityDataType = unknown> {
   private secure?: boolean;
   private format?: ResponseType;
 
-  constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "" });
+  constructor({
+    securityWorker,
+    secure,
+    format,
+    ...axiosConfig
+  }: ApiConfig<SecurityDataType> = {}) {
+    this.instance = axios.create({
+      ...axiosConfig,
+      baseURL: axiosConfig.baseURL || "",
+    });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -558,7 +576,10 @@ export class HttpClient<SecurityDataType = unknown> {
     this.securityData = data;
   };
 
-  private mergeRequestParams(params1: AxiosRequestConfig, params2?: AxiosRequestConfig): AxiosRequestConfig {
+  private mergeRequestParams(
+    params1: AxiosRequestConfig,
+    params2?: AxiosRequestConfig
+  ): AxiosRequestConfig {
     return {
       ...this.instance.defaults,
       ...params1,
@@ -580,7 +601,7 @@ export class HttpClient<SecurityDataType = unknown> {
           ? property
           : typeof property === "object" && property !== null
           ? JSON.stringify(property)
-          : `${property}`,
+          : `${property}`
       );
       return formData;
     }, new FormData());
@@ -603,7 +624,12 @@ export class HttpClient<SecurityDataType = unknown> {
     const requestParams = this.mergeRequestParams(params, secureParams);
     const responseFormat = (format && this.format) || void 0;
 
-    if (type === ContentType.FormData && body && body !== null && typeof body === "object") {
+    if (
+      type === ContentType.FormData &&
+      body &&
+      body !== null &&
+      typeof body === "object"
+    ) {
       requestParams.headers.common = { Accept: "*/*" };
       requestParams.headers.post = {};
       requestParams.headers.put = {};
@@ -614,7 +640,9 @@ export class HttpClient<SecurityDataType = unknown> {
     return this.instance.request({
       ...requestParams,
       headers: {
-        ...(type && type !== ContentType.FormData ? { "Content-Type": type } : {}),
+        ...(type && type !== ContentType.FormData
+          ? { "Content-Type": type }
+          : {}),
         ...(requestParams.headers || {}),
       },
       params: query,
@@ -629,7 +657,9 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title ethermint/evm/v1/evm.proto
  * @version version not set
  */
-export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+export class Api<
+  SecurityDataType extends unknown
+> extends HttpClient<SecurityDataType> {
   /**
    * No description
    *
@@ -722,7 +752,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
    */
   queryEstimateGas = (
     query?: { args?: string; gas_cap?: string; proposer_address?: string },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<V1EstimateGasResponse, RpcStatus>({
       path: `/ethermint/evm/v1/estimate_gas`,
@@ -740,7 +770,10 @@ it's similar to feemarket module's method, but also checks london hardfork statu
    * @summary EthCall implements the `eth_call` rpc api
    * @request GET:/ethermint/evm/v1/eth_call
    */
-  queryEthCall = (query?: { args?: string; gas_cap?: string; proposer_address?: string }, params: RequestParams = {}) =>
+  queryEthCall = (
+    query?: { args?: string; gas_cap?: string; proposer_address?: string },
+    params: RequestParams = {}
+  ) =>
     this.request<V1MsgEthereumTxResponse, RpcStatus>({
       path: `/ethermint/evm/v1/eth_call`,
       method: "GET",
@@ -758,8 +791,14 @@ it's similar to feemarket module's method, but also checks london hardfork statu
    * @request POST:/ethermint/evm/v1/ethereum_tx
    */
   msgEthereumTx = (
-    query?: { "data.type_url"?: string; "data.value"?: string; size?: number; hash?: string; from?: string },
-    params: RequestParams = {},
+    query?: {
+      "data.type_url"?: string;
+      "data.value"?: string;
+      size?: number;
+      hash?: string;
+      from?: string;
+    },
+    params: RequestParams = {}
   ) =>
     this.request<V1MsgEthereumTxResponse, RpcStatus>({
       path: `/ethermint/evm/v1/ethereum_tx`,
@@ -842,7 +881,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
       block_time?: string;
       proposer_address?: string;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<V1QueryTraceBlockResponse, RpcStatus>({
       path: `/ethermint/evm/v1/trace_block`,
@@ -898,7 +937,7 @@ it's similar to feemarket module's method, but also checks london hardfork statu
       block_time?: string;
       proposer_address?: string;
     },
-    params: RequestParams = {},
+    params: RequestParams = {}
   ) =>
     this.request<V1QueryTraceTxResponse, RpcStatus>({
       path: `/ethermint/evm/v1/trace_tx`,

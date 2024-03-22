@@ -113,7 +113,7 @@ schema = 3
   [mod."github.com/cosmos/iavl"]
     version = "v0.19.5"
     hash = "sha256-8PerCyxQrBCtr2zkhgriqauhCSoIe580dsYpZ44o+cE="
-  [mod."github.com/cosmos/ibc-go/v6"]
+  [mod."github.com/cosmos/ibc-go/v7"]
     version = "v6.1.0"
     hash = "sha256-mHYCqLedcveDjfm1EiO2EMMNJqLm9u4WHwQTy1muOoc="
   [mod."github.com/cosmos/ledger-cosmos-go"]
@@ -459,11 +459,11 @@ schema = 3
   [mod."github.com/tendermint/go-amino"]
     version = "v0.16.0"
     hash = "sha256-JW4zO/0vMzf1dXLePOqaMtiLUZgNbuIseh9GV+jQlf0="
-  [mod."github.com/tendermint/tendermint"]
+  [mod."github.com/cometbft/cometbft"]
     version = "v0.34.27"
     hash = "sha256-BbpfLcLRf6PwB1xmgkhTm9ckZekelrDUlXDX0/FSMU8="
     replaced = "github.com/cometbft/cometbft"
-  [mod."github.com/tendermint/tm-db"]
+  [mod."github.com/cometbft/cometbft-db"]
     version = "v0.6.7"
     hash = "sha256-hl/3RrBrpkk2zA6dmrNlIYKs1/GfqegSscDSkA5Pjlo="
   [mod."github.com/tidwall/btree"]

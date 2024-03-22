@@ -37,8 +37,8 @@ import (
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
 	// "github.com/spf13/viper"
-	"github.com/tendermint/tendermint/libs/log"
-	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
+	"github.com/cometbft/cometbft/libs/log"
+	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 )
 
 // BackendI implements the Cosmos and EVM backend.

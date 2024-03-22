@@ -21,11 +21,11 @@ import (
 
 	rpctypes "github.com/Entangle-Protocol/entangle-blockchain/rpc/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/pkg/errors"
-	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
 // TraceTransaction returns the structured logs created during the execution of EVM
