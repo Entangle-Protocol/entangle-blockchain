@@ -24,31 +24,31 @@ func (suite *KeeperTestSuite) TestEndBlock() {
 			"No correct Distributors",
 			func() {},
 			false,
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 		},
 		{
 			"Distributor with timer in future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(1234567890123)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: uint64(1234567890123)})
 			},
 			true,
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 		},
 		{
 			"Distributor with 0 timer",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(0)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: uint64(0)})
 			},
 			true,
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 		},
 		{
 			"Distributor remove",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(100)})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, distributorsauthtypes.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: uint64(100)})
 			},
 			false,
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 		},
 	}
 	for _, tc := range testCases {

@@ -30,7 +30,7 @@ func (suite *KeeperTestSuite) TestQueryDistributor() {
 
 				expRes = &types.QueryDistributorResponse{Distributor: distr}
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			timeInFuture,
 		},
 	}
@@ -75,7 +75,7 @@ func (suite *KeeperTestSuite) TestQueryDistributors() {
 
 				expRes = &types.QueryDistributorsResponse{Distributors: []types.DistributorInfo{distr}}
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			timeInFuture,
 		},
 	}
@@ -110,7 +110,7 @@ func (suite *KeeperTestSuite) TestQueryAdmin() {
 
 				expRes = &types.QueryAdminResponse{Admin: admin}
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -124,7 +124,7 @@ func (suite *KeeperTestSuite) TestQueryAdmin() {
 
 				expRes = &types.QueryAdminResponse{Admin: admin}
 			},
-			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
+			"ent1cdsdkvxydypnhtec5y880qdtdexcu2ehjcadxn",
 			true,
 		},
 	}
@@ -169,7 +169,7 @@ func (suite *KeeperTestSuite) TestQueryAdmins() {
 
 				expRes = &types.QueryAdminsResponse{Admins: []types.Admin{admin}}
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -183,7 +183,7 @@ func (suite *KeeperTestSuite) TestQueryAdmins() {
 
 				expRes = &types.QueryAdminsResponse{Admins: []types.Admin{admin}}
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			false,
 		},
 	}

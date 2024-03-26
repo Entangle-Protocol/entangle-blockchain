@@ -26,12 +26,13 @@ func TestParseTxResult(t *testing.T) {
 				GasUsed: 21000,
 				Events: []abci.Event{
 					{Type: "coin_received", Attributes: []abci.EventAttribute{
-						{Key: "receiver", Value: "ethm12luku6uxehhak02py4rcz65zu0swh7wjun6msa"},
+						{Key: "receiver", Value: "ent12luku6uxehhak02py4rcz65zu0swh7wj8ych6f"},
 						{Key: "amount", Value: "1252860basetcro"},
 					}},
 					{Type: "coin_spent", Attributes: []abci.EventAttribute{
-						{Key: "spender", Value: "ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl"},
+						{Key: "spender", Value: "ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt"},
 						{Key: "amount", Value: "1252860basetcro"},
+
 					}},
 					{Type: evmtypes.EventTypeEthereumTx, Attributes: []abci.EventAttribute{
 						{Key: "ethereumTxHash", Value: txHash.Hex()},
@@ -43,7 +44,7 @@ func TestParseTxResult(t *testing.T) {
 					}},
 					{Type: "message", Attributes: []abci.EventAttribute{
 						{Key: "action", Value: "/ethermint.evm.v1.MsgEthereumTx"},
-						{Key: "key", Value: "ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl"},
+						{Key: "key", Value: "ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt"},
 						{Key: "module", Value: "evm"},
 						{Key: "sender", Value: address},
 					}},
@@ -82,11 +83,11 @@ func TestParseTxResult(t *testing.T) {
 				GasUsed: 21000,
 				Events: []abci.Event{
 					{Type: "coin_received", Attributes: []abci.EventAttribute{
-						{Key: "receiver", Value: "ethm12luku6uxehhak02py4rcz65zu0swh7wjun6msa"},
+						{Key: "receiver", Value: "ent12luku6uxehhak02py4rcz65zu0swh7wj8ych6f"},
 						{Key: "amount", Value: "1252860basetcro"},
 					}},
 					{Type: "coin_spent", Attributes: []abci.EventAttribute{
-						{Key: "spender", Value: "ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl"},
+						{Key: "spender", Value: "ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt"},
 						{Key: "amount", Value: "1252860basetcro"},
 					}},
 					{Type: evmtypes.EventTypeEthereumTx, Attributes: []abci.EventAttribute{
@@ -103,7 +104,7 @@ func TestParseTxResult(t *testing.T) {
 					}},
 					{Type: "message", Attributes: []abci.EventAttribute{
 						{Key: "action", Value: "/ethermint.evm.v1.MsgEthereumTx"},
-						{Key: "key", Value: "ethm17xpfvakm2amg962yls6f84z3kell8c5lthdzgl"},
+						{Key: "key", Value: "ent17xpfvakm2amg962yls6f84z3kell8c5lsq0wzt"},
 						{Key: "module", Value: "evm"},
 						{Key: "sender", Value: address},
 					}},

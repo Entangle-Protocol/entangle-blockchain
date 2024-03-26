@@ -209,9 +209,9 @@ func (suite *KeeperTestSuite) TestSetGetDistributor() {
 		{
 			"distributor with end date in future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: timeInFuture})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: timeInFuture})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			timeInFuture,
 			true,
 		},
@@ -220,7 +220,7 @@ func (suite *KeeperTestSuite) TestSetGetDistributor() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			timeInFuture,
 			true,
 		},
@@ -229,45 +229,45 @@ func (suite *KeeperTestSuite) TestSetGetDistributor() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			timeInFuture,
 			true,
 		},
 		{
 			"distributor with end date in past",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: timeInPast})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1cdsdkvxydypnhtec5y880qdtdexcu2ehjcadxn", EndDate: timeInPast})
 			},
-			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
+			"ent1cdsdkvxydypnhtec5y880qdtdexcu2ehjcadxn",
 			timeInPast,
 			false,
 		},
 		{
 			"distributor with end date 0",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: zeroTime})
 			},
-			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			"ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z",
 			zeroTime,
 			true,
 		},
 		{
 			"add distributor and change end date to ethernal",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: timeInFuture})
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: timeInFuture})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: zeroTime})
 			},
-			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			"ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z",
 			zeroTime,
 			true,
 		},
 		{
 			"add distributor and change end date to future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: timeInFuture})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: zeroTime})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: timeInFuture})
 			},
-			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			"ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z",
 			timeInFuture,
 			true,
 		},
@@ -307,9 +307,9 @@ func (suite *KeeperTestSuite) TestSetGetAdmin() {
 		{
 			"admin with edit_option true",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EditOption: true})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EditOption: true})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -317,7 +317,7 @@ func (suite *KeeperTestSuite) TestSetGetAdmin() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EditOption: true})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
@@ -325,15 +325,15 @@ func (suite *KeeperTestSuite) TestSetGetAdmin() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EditOption: true})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
 			"admin with edit_option false",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EditOption: false})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EditOption: false})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			false,
 		},
 		{
@@ -347,7 +347,7 @@ func (suite *KeeperTestSuite) TestSetGetAdmin() {
 		{
 			"wrong admin address",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1hhcu6yx67x", EditOption: true})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1hhcu6yx67x", EditOption: true})
 			},
 			"",
 			true,
@@ -384,9 +384,9 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 		{
 			"distributor with end date in future",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: timeInFuture})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: timeInFuture})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -394,7 +394,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
@@ -402,23 +402,23 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EndDate: timeInFuture})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
 			"distributor with end date in past",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8", EndDate: timeInPast})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1cdsdkvxydypnhtec5y880qdtdexcu2ehjcadxn", EndDate: timeInPast})
 			},
-			"ethm1cdsdkvxydypnhtec5y880qdtdexcu2ehf0lpv8",
+			"ent1cdsdkvxydypnhtec5y880qdtdexcu2ehjcadxn",
 			false,
 		},
 		{
 			"distributor with end date 0",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk", EndDate: zeroTime})
+				suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z", EndDate: zeroTime})
 			},
-			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdk",
+			"ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08z",
 			true,
 		},
 		{
@@ -447,7 +447,7 @@ func (suite *KeeperTestSuite) TestSetValidateDistributor() {
 			"no distributors real address",
 			func() {
 			},
-			"ethm1hhcu6yx67x67ykt4cp47g28t3m0jvcps3p3rdkp",
+			"ent1hhcu6yx67x67ykt4cp47g28t3m0jvcps2kn08zp",
 			false,
 		},
 	}
@@ -474,9 +474,9 @@ func (suite *KeeperTestSuite) TestSetValidateAdmin() {
 		{
 			"admin with edit_option true",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EditOption: true})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EditOption: true})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -484,7 +484,7 @@ func (suite *KeeperTestSuite) TestSetValidateAdmin() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "0x69475350714b09b60b2ecc3aa5c407b9d1caec86", EditOption: true})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
@@ -492,15 +492,15 @@ func (suite *KeeperTestSuite) TestSetValidateAdmin() {
 			func() {
 				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "69475350714b09b60b2ecc3aa5c407b9d1caec86", EditOption: true})
 			},
-			"ethm1d9r4x5r3fvymvzewesa2t3q8h8gu4myxgklefl",
+			"ent1d9r4x5r3fvymvzewesa2t3q8h8gu4myxnpa4rt",
 			true,
 		},
 		{
 			"admin with edit_option false",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EditOption: false})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EditOption: false})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			true,
 		},
 		{
@@ -521,9 +521,9 @@ func (suite *KeeperTestSuite) TestSetValidateAdmin() {
 		{
 			"wrong admin address",
 			func() {
-				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ethm1hhcu6yx67x", EditOption: true})
+				suite.app.DistributorsAuthKeeper.AddAdmin(suite.ctx, types.Admin{Address: "ent1hhcu6yx67x", EditOption: true})
 			},
-			"ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww",
+			"ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6",
 			false,
 		},
 	}
@@ -558,7 +558,7 @@ func (suite *KeeperTestSuite) TestAnteHandler() {
 	_, distributorErr := dec.AnteHandle(suite.ctx, signedTx, false, NextFn)
 	suite.Require().Error(distributorErr)
 
-	// suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ethm1tjm23pl06ja8zgag08q2vt8smrnyds9yzkx7ww", EndDate: uint64(1234567890123123123)})
+	// suite.app.DistributorsAuthKeeper.AddDistributor(suite.ctx, types.DistributorInfo{Address: "ent1tjm23pl06ja8zgag08q2vt8smrnyds9yepyjy6", EndDate: uint64(1234567890123123123)})
 	// dec = ante.NewDistributorsAuthDecorator(suite.app.DistributorsAuthKeeper)
 
 	// _, distributorErr = dec.AnteHandle(suite.ctx, signedTx, false, NextFn)
