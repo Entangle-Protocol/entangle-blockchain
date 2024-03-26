@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	distributorsauthtypes "github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
-	"github.com/tendermint/tendermint/abci/types"
+	"github.com/cometbft/cometbft/abci/types"
 )
 
 func (suite *KeeperTestSuite) TestEndBlock() {

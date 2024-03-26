@@ -6,16 +6,28 @@ import (
 	"testing"
 
 	"github.com/Entangle-Protocol/entangle-blockchain/encoding"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	abci "github.com/tendermint/tendermint/abci/types"
-	"github.com/tendermint/tendermint/libs/log"
-	dbm "github.com/tendermint/tm-db"
+	dbm "github.com/cometbft/cometbft-db"
+	abci "github.com/cometbft/cometbft/abci/types"
+	"github.com/cometbft/cometbft/libs/log"
+	"github.com/cosmos/cosmos-sdk/baseapp"
+	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 )
 
 func BenchmarkEthermintApp_ExportAppStateAndValidators(b *testing.B) {
 	db := dbm.NewMemDB()
-	app := NewEthermintApp(log.NewTMLogger(io.Discard), db, nil, true, map[int64]bool{}, DefaultNodeHome, 0, encoding.MakeConfig(ModuleBasics), simapp.EmptyAppOptions{}, true)
-
+	app := NewEthermintApp(
+		log.NewTMLogger(io.Discard),
+		db,
+		nil,
+		true,
+		map[int64]bool{},
+		DefaultNodeHome,
+		0,
+		encoding.MakeConfig(ModuleBasics),
+		simtestutil.NewAppOptionsWithFlagHome(DefaultNodeHome),
+		false,
+		baseapp.SetChainID(ChainID),
+	)
 	genesisState := NewTestGenesisState(app.AppCodec())
 	stateBytes, err := json.MarshalIndent(genesisState, "", "  ")
 	if err != nil {
@@ -36,8 +48,20 @@ func BenchmarkEthermintApp_ExportAppStateAndValidators(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
 		// Making a new app object with the db, so that initchain hasn't been called
-		app2 := NewEthermintApp(log.NewTMLogger(log.NewSyncWriter(io.Discard)), db, nil, true, map[int64]bool{}, DefaultNodeHome, 0, encoding.MakeConfig(ModuleBasics), simapp.EmptyAppOptions{}, true)
-		if _, err := app2.ExportAppStateAndValidators(false, []string{}); err != nil {
+		app2 := NewEthermintApp(
+			log.NewTMLogger(log.NewSyncWriter(io.Discard)),
+			db,
+			nil,
+			true,
+			map[int64]bool{},
+			DefaultNodeHome,
+			0,
+			encoding.MakeConfig(ModuleBasics),
+			simtestutil.NewAppOptionsWithFlagHome(DefaultNodeHome),
+			false,
+			baseapp.SetChainID(ChainID),
+		)
+		if _, err := app2.ExportAppStateAndValidators(false, []string{}, []string{}); err != nil {
 			b.Fatal(err)
 		}
 	}

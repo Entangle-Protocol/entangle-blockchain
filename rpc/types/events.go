@@ -21,10 +21,10 @@ import (
 
 	ethermint "github.com/Entangle-Protocol/entangle-blockchain/types"
 	evmtypes "github.com/Entangle-Protocol/entangle-blockchain/x/evm/types"
+	abci "github.com/cometbft/cometbft/abci/types"
+	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
-	abci "github.com/tendermint/tendermint/abci/types"
-	tmrpctypes "github.com/tendermint/tendermint/rpc/core/types"
 )
 
 // EventFormat is the format version of the events.
@@ -266,7 +266,7 @@ func fillTxAttribute(tx *ParsedTx, key []byte, value []byte) error {
 
 func fillTxAttributes(tx *ParsedTx, attrs []abci.EventAttribute) error {
 	for _, attr := range attrs {
-		if err := fillTxAttribute(tx, attr.Key, attr.Value); err != nil {
+		if err := fillTxAttribute(tx, []byte(attr.Key), []byte(attr.Value)); err != nil {
 			return err
 		}
 	}
