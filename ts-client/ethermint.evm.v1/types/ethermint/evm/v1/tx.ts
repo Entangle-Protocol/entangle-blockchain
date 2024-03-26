@@ -9,9 +9,7 @@ export const protobufPackage = "ethermint.evm.v1";
 /** MsgEthereumTx encapsulates an Ethereum transaction as an SDK message. */
 export interface MsgEthereumTx {
   /** inner transaction data */
-  data:
-    | Any
-    | undefined;
+  data: Any | undefined;
   /** DEPRECATED: encoded storage size of the transaction */
   size: number;
   /** transaction hash in hex format */
@@ -102,15 +100,14 @@ export interface DynamicFeeTx {
   s: Uint8Array;
 }
 
-export interface ExtensionOptionsEthereumTx {
-}
+export interface ExtensionOptionsEthereumTx {}
 
 /** MsgEthereumTxResponse defines the Msg/EthereumTx response type. */
 export interface MsgEthereumTxResponse {
   /**
    * ethereum transaction hash in hex format. This hash differs from the
    * Tendermint sha256 hash of the transaction bytes. See
-   * https://github.com/tendermint/tendermint/issues/6539 for reference
+   * https://github.com/cometbft/cometbft/issues/6539 for reference
    */
   hash: string;
   /**
@@ -134,7 +131,10 @@ function createBaseMsgEthereumTx(): MsgEthereumTx {
 }
 
 export const MsgEthereumTx = {
-  encode(message: MsgEthereumTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: MsgEthereumTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.data !== undefined) {
       Any.encode(message.data, writer.uint32(10).fork()).ldelim();
     }
@@ -188,16 +188,22 @@ export const MsgEthereumTx = {
 
   toJSON(message: MsgEthereumTx): unknown {
     const obj: any = {};
-    message.data !== undefined && (obj.data = message.data ? Any.toJSON(message.data) : undefined);
+    message.data !== undefined &&
+      (obj.data = message.data ? Any.toJSON(message.data) : undefined);
     message.size !== undefined && (obj.size = message.size);
     message.hash !== undefined && (obj.hash = message.hash);
     message.from !== undefined && (obj.from = message.from);
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgEthereumTx>, I>>(object: I): MsgEthereumTx {
+  fromPartial<I extends Exact<DeepPartial<MsgEthereumTx>, I>>(
+    object: I
+  ): MsgEthereumTx {
     const message = createBaseMsgEthereumTx();
-    message.data = (object.data !== undefined && object.data !== null) ? Any.fromPartial(object.data) : undefined;
+    message.data =
+      object.data !== undefined && object.data !== null
+        ? Any.fromPartial(object.data)
+        : undefined;
     message.size = object.size ?? 0;
     message.hash = object.hash ?? "";
     message.from = object.from ?? "";
@@ -220,7 +226,10 @@ function createBaseLegacyTx(): LegacyTx {
 }
 
 export const LegacyTx = {
-  encode(message: LegacyTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: LegacyTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.nonce !== 0) {
       writer.uint32(8).uint64(message.nonce);
     }
@@ -300,7 +309,9 @@ export const LegacyTx = {
       gas: isSet(object.gas) ? Number(object.gas) : 0,
       to: isSet(object.to) ? String(object.to) : "",
       value: isSet(object.value) ? String(object.value) : "",
-      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
       v: isSet(object.v) ? bytesFromBase64(object.v) : new Uint8Array(),
       r: isSet(object.r) ? bytesFromBase64(object.r) : new Uint8Array(),
       s: isSet(object.s) ? bytesFromBase64(object.s) : new Uint8Array(),
@@ -314,11 +325,22 @@ export const LegacyTx = {
     message.gas !== undefined && (obj.gas = Math.round(message.gas));
     message.to !== undefined && (obj.to = message.to);
     message.value !== undefined && (obj.value = message.value);
-    message.data !== undefined
-      && (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
-    message.v !== undefined && (obj.v = base64FromBytes(message.v !== undefined ? message.v : new Uint8Array()));
-    message.r !== undefined && (obj.r = base64FromBytes(message.r !== undefined ? message.r : new Uint8Array()));
-    message.s !== undefined && (obj.s = base64FromBytes(message.s !== undefined ? message.s : new Uint8Array()));
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
+    message.v !== undefined &&
+      (obj.v = base64FromBytes(
+        message.v !== undefined ? message.v : new Uint8Array()
+      ));
+    message.r !== undefined &&
+      (obj.r = base64FromBytes(
+        message.r !== undefined ? message.r : new Uint8Array()
+      ));
+    message.s !== undefined &&
+      (obj.s = base64FromBytes(
+        message.s !== undefined ? message.s : new Uint8Array()
+      ));
     return obj;
   },
 
@@ -354,7 +376,10 @@ function createBaseAccessListTx(): AccessListTx {
 }
 
 export const AccessListTx = {
-  encode(message: AccessListTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: AccessListTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.chainId !== "") {
       writer.uint32(10).string(message.chainId);
     }
@@ -447,8 +472,12 @@ export const AccessListTx = {
       gas: isSet(object.gas) ? Number(object.gas) : 0,
       to: isSet(object.to) ? String(object.to) : "",
       value: isSet(object.value) ? String(object.value) : "",
-      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
-      accesses: Array.isArray(object?.accesses) ? object.accesses.map((e: any) => AccessTuple.fromJSON(e)) : [],
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      accesses: Array.isArray(object?.accesses)
+        ? object.accesses.map((e: any) => AccessTuple.fromJSON(e))
+        : [],
       v: isSet(object.v) ? bytesFromBase64(object.v) : new Uint8Array(),
       r: isSet(object.r) ? bytesFromBase64(object.r) : new Uint8Array(),
       s: isSet(object.s) ? bytesFromBase64(object.s) : new Uint8Array(),
@@ -463,20 +492,35 @@ export const AccessListTx = {
     message.gas !== undefined && (obj.gas = Math.round(message.gas));
     message.to !== undefined && (obj.to = message.to);
     message.value !== undefined && (obj.value = message.value);
-    message.data !== undefined
-      && (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
     if (message.accesses) {
-      obj.accesses = message.accesses.map((e) => e ? AccessTuple.toJSON(e) : undefined);
+      obj.accesses = message.accesses.map((e) =>
+        e ? AccessTuple.toJSON(e) : undefined
+      );
     } else {
       obj.accesses = [];
     }
-    message.v !== undefined && (obj.v = base64FromBytes(message.v !== undefined ? message.v : new Uint8Array()));
-    message.r !== undefined && (obj.r = base64FromBytes(message.r !== undefined ? message.r : new Uint8Array()));
-    message.s !== undefined && (obj.s = base64FromBytes(message.s !== undefined ? message.s : new Uint8Array()));
+    message.v !== undefined &&
+      (obj.v = base64FromBytes(
+        message.v !== undefined ? message.v : new Uint8Array()
+      ));
+    message.r !== undefined &&
+      (obj.r = base64FromBytes(
+        message.r !== undefined ? message.r : new Uint8Array()
+      ));
+    message.s !== undefined &&
+      (obj.s = base64FromBytes(
+        message.s !== undefined ? message.s : new Uint8Array()
+      ));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<AccessListTx>, I>>(object: I): AccessListTx {
+  fromPartial<I extends Exact<DeepPartial<AccessListTx>, I>>(
+    object: I
+  ): AccessListTx {
     const message = createBaseAccessListTx();
     message.chainId = object.chainId ?? "";
     message.nonce = object.nonce ?? 0;
@@ -485,7 +529,8 @@ export const AccessListTx = {
     message.to = object.to ?? "";
     message.value = object.value ?? "";
     message.data = object.data ?? new Uint8Array();
-    message.accesses = object.accesses?.map((e) => AccessTuple.fromPartial(e)) || [];
+    message.accesses =
+      object.accesses?.map((e) => AccessTuple.fromPartial(e)) || [];
     message.v = object.v ?? new Uint8Array();
     message.r = object.r ?? new Uint8Array();
     message.s = object.s ?? new Uint8Array();
@@ -511,7 +556,10 @@ function createBaseDynamicFeeTx(): DynamicFeeTx {
 }
 
 export const DynamicFeeTx = {
-  encode(message: DynamicFeeTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: DynamicFeeTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.chainId !== "") {
       writer.uint32(10).string(message.chainId);
     }
@@ -611,8 +659,12 @@ export const DynamicFeeTx = {
       gas: isSet(object.gas) ? Number(object.gas) : 0,
       to: isSet(object.to) ? String(object.to) : "",
       value: isSet(object.value) ? String(object.value) : "",
-      data: isSet(object.data) ? bytesFromBase64(object.data) : new Uint8Array(),
-      accesses: Array.isArray(object?.accesses) ? object.accesses.map((e: any) => AccessTuple.fromJSON(e)) : [],
+      data: isSet(object.data)
+        ? bytesFromBase64(object.data)
+        : new Uint8Array(),
+      accesses: Array.isArray(object?.accesses)
+        ? object.accesses.map((e: any) => AccessTuple.fromJSON(e))
+        : [],
       v: isSet(object.v) ? bytesFromBase64(object.v) : new Uint8Array(),
       r: isSet(object.r) ? bytesFromBase64(object.r) : new Uint8Array(),
       s: isSet(object.s) ? bytesFromBase64(object.s) : new Uint8Array(),
@@ -628,20 +680,35 @@ export const DynamicFeeTx = {
     message.gas !== undefined && (obj.gas = Math.round(message.gas));
     message.to !== undefined && (obj.to = message.to);
     message.value !== undefined && (obj.value = message.value);
-    message.data !== undefined
-      && (obj.data = base64FromBytes(message.data !== undefined ? message.data : new Uint8Array()));
+    message.data !== undefined &&
+      (obj.data = base64FromBytes(
+        message.data !== undefined ? message.data : new Uint8Array()
+      ));
     if (message.accesses) {
-      obj.accesses = message.accesses.map((e) => e ? AccessTuple.toJSON(e) : undefined);
+      obj.accesses = message.accesses.map((e) =>
+        e ? AccessTuple.toJSON(e) : undefined
+      );
     } else {
       obj.accesses = [];
     }
-    message.v !== undefined && (obj.v = base64FromBytes(message.v !== undefined ? message.v : new Uint8Array()));
-    message.r !== undefined && (obj.r = base64FromBytes(message.r !== undefined ? message.r : new Uint8Array()));
-    message.s !== undefined && (obj.s = base64FromBytes(message.s !== undefined ? message.s : new Uint8Array()));
+    message.v !== undefined &&
+      (obj.v = base64FromBytes(
+        message.v !== undefined ? message.v : new Uint8Array()
+      ));
+    message.r !== undefined &&
+      (obj.r = base64FromBytes(
+        message.r !== undefined ? message.r : new Uint8Array()
+      ));
+    message.s !== undefined &&
+      (obj.s = base64FromBytes(
+        message.s !== undefined ? message.s : new Uint8Array()
+      ));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<DynamicFeeTx>, I>>(object: I): DynamicFeeTx {
+  fromPartial<I extends Exact<DeepPartial<DynamicFeeTx>, I>>(
+    object: I
+  ): DynamicFeeTx {
     const message = createBaseDynamicFeeTx();
     message.chainId = object.chainId ?? "";
     message.nonce = object.nonce ?? 0;
@@ -651,7 +718,8 @@ export const DynamicFeeTx = {
     message.to = object.to ?? "";
     message.value = object.value ?? "";
     message.data = object.data ?? new Uint8Array();
-    message.accesses = object.accesses?.map((e) => AccessTuple.fromPartial(e)) || [];
+    message.accesses =
+      object.accesses?.map((e) => AccessTuple.fromPartial(e)) || [];
     message.v = object.v ?? new Uint8Array();
     message.r = object.r ?? new Uint8Array();
     message.s = object.s ?? new Uint8Array();
@@ -664,11 +732,17 @@ function createBaseExtensionOptionsEthereumTx(): ExtensionOptionsEthereumTx {
 }
 
 export const ExtensionOptionsEthereumTx = {
-  encode(_: ExtensionOptionsEthereumTx, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    _: ExtensionOptionsEthereumTx,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ExtensionOptionsEthereumTx {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): ExtensionOptionsEthereumTx {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseExtensionOptionsEthereumTx();
@@ -692,7 +766,9 @@ export const ExtensionOptionsEthereumTx = {
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<ExtensionOptionsEthereumTx>, I>>(_: I): ExtensionOptionsEthereumTx {
+  fromPartial<I extends Exact<DeepPartial<ExtensionOptionsEthereumTx>, I>>(
+    _: I
+  ): ExtensionOptionsEthereumTx {
     const message = createBaseExtensionOptionsEthereumTx();
     return message;
   },
@@ -703,7 +779,10 @@ function createBaseMsgEthereumTxResponse(): MsgEthereumTxResponse {
 }
 
 export const MsgEthereumTxResponse = {
-  encode(message: MsgEthereumTxResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: MsgEthereumTxResponse,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.hash !== "") {
       writer.uint32(10).string(message.hash);
     }
@@ -722,7 +801,10 @@ export const MsgEthereumTxResponse = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgEthereumTxResponse {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): MsgEthereumTxResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseMsgEthereumTxResponse();
@@ -755,7 +837,9 @@ export const MsgEthereumTxResponse = {
   fromJSON(object: any): MsgEthereumTxResponse {
     return {
       hash: isSet(object.hash) ? String(object.hash) : "",
-      logs: Array.isArray(object?.logs) ? object.logs.map((e: any) => Log.fromJSON(e)) : [],
+      logs: Array.isArray(object?.logs)
+        ? object.logs.map((e: any) => Log.fromJSON(e))
+        : [],
       ret: isSet(object.ret) ? bytesFromBase64(object.ret) : new Uint8Array(),
       vmError: isSet(object.vmError) ? String(object.vmError) : "",
       gasUsed: isSet(object.gasUsed) ? Number(object.gasUsed) : 0,
@@ -766,18 +850,23 @@ export const MsgEthereumTxResponse = {
     const obj: any = {};
     message.hash !== undefined && (obj.hash = message.hash);
     if (message.logs) {
-      obj.logs = message.logs.map((e) => e ? Log.toJSON(e) : undefined);
+      obj.logs = message.logs.map((e) => (e ? Log.toJSON(e) : undefined));
     } else {
       obj.logs = [];
     }
-    message.ret !== undefined
-      && (obj.ret = base64FromBytes(message.ret !== undefined ? message.ret : new Uint8Array()));
+    message.ret !== undefined &&
+      (obj.ret = base64FromBytes(
+        message.ret !== undefined ? message.ret : new Uint8Array()
+      ));
     message.vmError !== undefined && (obj.vmError = message.vmError);
-    message.gasUsed !== undefined && (obj.gasUsed = Math.round(message.gasUsed));
+    message.gasUsed !== undefined &&
+      (obj.gasUsed = Math.round(message.gasUsed));
     return obj;
   },
 
-  fromPartial<I extends Exact<DeepPartial<MsgEthereumTxResponse>, I>>(object: I): MsgEthereumTxResponse {
+  fromPartial<I extends Exact<DeepPartial<MsgEthereumTxResponse>, I>>(
+    object: I
+  ): MsgEthereumTxResponse {
     const message = createBaseMsgEthereumTxResponse();
     message.hash = object.hash ?? "";
     message.logs = object.logs?.map((e) => Log.fromPartial(e)) || [];
@@ -802,13 +891,23 @@ export class MsgClientImpl implements Msg {
   }
   EthereumTx(request: MsgEthereumTx): Promise<MsgEthereumTxResponse> {
     const data = MsgEthereumTx.encode(request).finish();
-    const promise = this.rpc.request("ethermint.evm.v1.Msg", "EthereumTx", data);
-    return promise.then((data) => MsgEthereumTxResponse.decode(new _m0.Reader(data)));
+    const promise = this.rpc.request(
+      "ethermint.evm.v1.Msg",
+      "EthereumTx",
+      data
+    );
+    return promise.then((data) =>
+      MsgEthereumTxResponse.decode(new _m0.Reader(data))
+    );
   }
 }
 
 interface Rpc {
-  request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;
+  request(
+    service: string,
+    method: string,
+    data: Uint8Array
+  ): Promise<Uint8Array>;
 }
 
 declare var self: any | undefined;
@@ -855,16 +954,31 @@ function base64FromBytes(arr: Uint8Array): string {
   }
 }
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function longToNumber(long: Long): number {
   if (long.gt(Number.MAX_SAFE_INTEGER)) {

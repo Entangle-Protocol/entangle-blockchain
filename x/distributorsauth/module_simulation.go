@@ -8,7 +8,6 @@ import (
 	"github.com/Entangle-Protocol/entangle-blockchain/x/distributorsauth/types"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
-	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
@@ -19,7 +18,8 @@ import (
 var (
 	_ = sample.AccAddress
 	_ = distributorsauthsimulation.FindAccount
-	_ = simappparams.StakePerAccount
+	//_ = simappparams.StakePerAccount
+	_ = rand.Rand{}
 	_ = simulation.MsgEntryKind
 	_ = baseapp.Paramspace
 )
@@ -51,11 +51,6 @@ func (AppModule) ProposalContents(_ module.SimulationState) []simtypes.WeightedP
 	return nil
 }
 
-// RandomizedParams creates randomized  param changes for the simulator
-func (am AppModule) RandomizedParams(_ *rand.Rand) []simtypes.ParamChange {
-	return []simtypes.ParamChange{}
-}
-
 // RegisterStoreDecoder registers a decoder
 func (am AppModule) RegisterStoreDecoder(_ sdk.StoreDecoderRegistry) {}
 
@@ -66,4 +61,11 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
+}
+
+// ProposalMsgs returns msgs used for governance proposals for simulations.
+func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.WeightedProposalMsg {
+	return []simtypes.WeightedProposalMsg{
+		// this line is used by starport scaffolding # simapp/module/OpMsg
+	}
 }

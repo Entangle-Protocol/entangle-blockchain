@@ -1,4 +1,4 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Ethermint Chain - Legacy REST and gRPC Gateway docs
   description: A REST interface for state queries, legacy transactions
@@ -9,7 +9,7 @@ paths:
       summary: Account queries an Ethereum account.
       operationId: Account
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -234,7 +234,7 @@ paths:
         EthAccount.
       operationId: Balance
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -454,7 +454,7 @@ paths:
         hardfork status.
       operationId: BaseFee
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -661,7 +661,7 @@ paths:
       summary: Code queries the balance of all coins for a single account.
       operationId: Code
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -878,7 +878,7 @@ paths:
       summary: CosmosAccount queries an Ethereum account's Cosmos Address.
       operationId: CosmosAccount
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -1104,7 +1104,7 @@ paths:
       summary: EstimateGas implements the `eth_estimateGas` rpc api
       operationId: EstimateGas
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -1338,7 +1338,7 @@ paths:
       summary: EthCall implements the `eth_call` rpc api
       operationId: EthCall
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -1351,7 +1351,7 @@ paths:
 
                   Tendermint sha256 hash of the transaction bytes. See
 
-                  https://github.com/tendermint/tendermint/issues/6539 for
+                  https://github.com/cometbft/cometbft/issues/6539 for
                   reference
               logs:
                 type: array
@@ -1651,7 +1651,7 @@ paths:
       summary: Params queries the parameters of x/evm module.
       operationId: EvmParams
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -1983,7 +1983,7 @@ paths:
       summary: Storage queries the balance of all coins for a single account.
       operationId: Storage
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -2212,7 +2212,7 @@ paths:
         `debug_traceBlockByHash` rpc api
       operationId: TraceBlock
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -2603,7 +2603,7 @@ paths:
       summary: TraceTx implements the `debug_traceTransaction` rpc api
       operationId: TraceTx
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -2867,7 +2867,7 @@ paths:
           type: string
           format: byte
         - name: msg.size
-          description: 'DEPRECATED: encoded storage size of the transaction.'
+          description: "DEPRECATED: encoded storage size of the transaction."
           in: query
           required: false
           type: number
@@ -3078,7 +3078,7 @@ paths:
         Address.
       operationId: ValidatorAccount
       responses:
-        '200':
+        "200":
           description: A successful response.
           schema:
             type: object
@@ -3597,7 +3597,7 @@ definitions:
       size:
         type: number
         format: double
-        title: 'DEPRECATED: encoded storage size of the transaction'
+        title: "DEPRECATED: encoded storage size of the transaction"
       hash:
         type: string
         title: transaction hash in hex format
@@ -3616,7 +3616,7 @@ definitions:
         title: |-
           ethereum transaction hash in hex format. This hash differs from the
           Tendermint sha256 hash of the transaction bytes. See
-          https://github.com/tendermint/tendermint/issues/6539 for reference
+          https://github.com/cometbft/cometbft/issues/6539 for reference
       logs:
         type: array
         items:
