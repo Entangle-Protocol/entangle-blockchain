@@ -3,7 +3,7 @@
 
 # NOTE: Any path below can be absolute (e.g. "/var/myawesomeapp/data") or
 # relative to the home directory (e.g. "data"). The home directory is
-# "$HOME/.tendermint" by default, but could be changed via $TMHOME env variable
+# "$HOME/.cometbft" by default, but could be changed via $CMTHOME env variable
 # or --home cmd flag.
 
 #######################################################################
@@ -11,16 +11,19 @@
 #######################################################################
 
 # TCP or UNIX socket address of the ABCI application,
-# or the name of an ABCI application compiled in with the Tendermint binary
+# or the name of an ABCI application compiled in with the CometBFT binary
 proxy_app = "tcp://127.0.0.1:26658"
 
 # A custom human readable name for this node
-moniker = "validator"
+moniker = "my_validator"
 
-# If this node is many blocks behind the tip of the chain, FastSync
+# If this node is many blocks behind the tip of the chain, BlockSync
 # allows them to catchup quickly by downloading blocks in parallel
 # and verifying their commits
-fast_sync = true
+#
+# Deprecated: this key will be removed and BlockSync will be enabled 
+# unconditionally in the next major release.
+block_sync = true
 
 # Database backend: goleveldb | cleveldb | boltdb | rocksdb | badgerdb
 # * goleveldb (github.com/syndtr/goleveldb - most popular implementation)
@@ -63,7 +66,7 @@ priv_validator_key_file = "config/priv_validator_key.json"
 # Path to the JSON file containing the last sign state of a validator
 priv_validator_state_file = "data/priv_validator_state.json"
 
-# TCP or UNIX socket address for Tendermint to listen on for
+# TCP or UNIX socket address for CometBFT to listen on for
 # connections from an external PrivValidator process
 priv_validator_laddr = ""
 
@@ -160,14 +163,14 @@ experimental_websocket_write_buffer_size = 200
 #
 # Enabling this experimental parameter will cause the WebSocket connection to
 # be closed instead if it cannot read fast enough, allowing for greater
-# predictability in subscription behaviour.
+# predictability in subscription behavior.
 experimental_close_on_slow_client = false
 
 # How long to wait for a tx to be committed during /broadcast_tx_commit.
 # WARNING: Using a value larger than 10s will result in increasing the
 # global HTTP write timeout, which applies to all connections and endpoints.
-# See https://github.com/cometbft/cometbft/issues/3435
-timeout_broadcast_tx_commit = "1s"
+# See https://github.com/tendermint/tendermint/issues/3435
+timeout_broadcast_tx_commit = "10s"
 
 # Maximum size of request body, in bytes
 max_body_bytes = 1000000
@@ -176,17 +179,17 @@ max_body_bytes = 1000000
 max_header_bytes = 1048576
 
 # The path to a file containing certificate that is used to create the HTTPS server.
-# Might be either absolute path or path related to Tendermint's config directory.
+# Might be either absolute path or path related to CometBFT's config directory.
 # If the certificate is signed by a certificate authority,
 # the certFile should be the concatenation of the server's certificate, any intermediates,
 # and the CA's certificate.
-# NOTE: both tls_cert_file and tls_key_file must be present for Tendermint to create HTTPS server.
+# NOTE: both tls_cert_file and tls_key_file must be present for CometBFT to create HTTPS server.
 # Otherwise, HTTP server is run.
 tls_cert_file = ""
 
 # The path to a file containing matching private key that is used to create the HTTPS server.
-# Might be either absolute path or path related to Tendermint's config directory.
-# NOTE: both tls-cert-file and tls-key-file must be present for Tendermint to create HTTPS server.
+# Might be either absolute path or path related to CometBFT's config directory.
+# NOTE: both tls-cert-file and tls-key-file must be present for CometBFT to create HTTPS server.
 # Otherwise, HTTP server is run.
 tls_key_file = ""
 
@@ -212,7 +215,7 @@ external_address = ""
 seeds = ""
 
 # Comma separated list of nodes to keep persistent connections to
-persistent_peers = "42b8b4a22adbbc87313b145986022c1c3ad43f13@json-rpc.testnet2.entangle.fi:26656,741cb77bbbea6c2ec1a5b343be5f9144f9ca7e08@167.235.14.83:14656,27211a3886000faf8f854112ef31d052e635c5d8@95.217.114.120:25656,7bff324a17426a00731f425ae29fe6ef05eebbac@213.239.217.52:33656,65b88f9792a216c39189f1ec7cacf11d99388ce8@65.108.229.93:25656,0716c960f656eca4240a6a56f20f0e74fea6ee36@3.82.214.0:26656,76492a1356c14304bdd7ec946a6df0b57ba51fe2@35.175.80.14:26656"
+persistent_peers = "7ca810f11ddd54e7a10fed03a067b0ec3c1e8ba2@34.174.1.1:26656,2831d7b924b2b2774f70dbda6ebc8d8aa6f39e5d@95.216.75.190:26656,fbe38cb0500221859e631a93d7f830babea8871c@94.76.242.57:26656,1731c1b2f3bc8316a74d645a3f045c0f1aba7bc5@94.76.242.68:26656,841380487cf89030e9ae865dfb884cc703e6c2b2@94.76.242.98:26656,f381ea4431ba812caf27f65f1fbd31b64a699358@38.146.3.231:27156,6662a6b320b8f7520ebbc04e2891ee43227631a8@65.21.65.254:1550,9d25b1205658df64b509c21bcb212159f13039e3@37.252.186.204:26656,990d17a2686b47fe4bcf885bfae3f29897a58a32@65.108.71.227:26656,01f693f3f219e4fc58f4161c377a63011d369243@37.27.109.36:26656,da8baf26d486b9dd268dc62dd962141592f40068@65.108.97.119:26656,d47a5d94defcfa5eaac0dfc136b227a215a8f2b9@37.27.109.45:26656,8a6be04c58c3e633f9d3d201fd03d23b6cfcb3d1@65.21.33.59:26656,75e62df2ed4615cabe38a7b2d645e329a800be47@185.205.246.212:26656"
 
 # UPNP port forwarding
 upnp = false
@@ -274,7 +277,7 @@ dial_timeout = "3s"
 
 # Mempool version to use:
 #   1) "v0" - (default) FIFO mempool.
-#   2) "v1" - prioritized mempool.
+#   2) "v1" - prioritized mempool (deprecated; will be removed in the next release).
 version = "v0"
 
 recheck = true
@@ -303,7 +306,7 @@ max_tx_bytes = 1048576
 
 # Maximum size of a batch of transactions to send to a peer
 # Including space needed by encoding (one varint per transaction).
-# XXX: Unused due to https://github.com/cometbft/cometbft/issues/5796
+# XXX: Unused due to https://github.com/tendermint/tendermint/issues/5796
 max_batch_bytes = 0
 
 # ttl-duration, if non-zero, defines the maximum amount of time a transaction
@@ -359,14 +362,16 @@ chunk_request_timeout = "10s"
 chunk_fetchers = "4"
 
 #######################################################
-###       Fast Sync Configuration Connections       ###
+###       Block Sync Configuration Options          ###
 #######################################################
-[fastsync]
+[blocksync]
 
-# Fast Sync version to use:
-#   1) "v0" (default) - the legacy fast sync implementation
-#   2) "v1" - refactor of v0 version for better testability
-#   2) "v2" - complete redesign of v0, optimized for testability & readability
+# Block Sync version to use:
+# 
+# In v0.37, v1 and v2 of the block sync protocols were deprecated.
+# Please use v0 instead.
+#
+#   1) "v0" - the default block sync implementation
 version = "v0"
 
 #######################################################
@@ -377,21 +382,21 @@ version = "v0"
 wal_file = "data/cs.wal/wal"
 
 # How long we wait for a proposal block before prevoting nil
-timeout_propose = "1s"
+timeout_propose = "1300ms"
 # How much timeout_propose increases with each round
-timeout_propose_delta = "200ms"
+timeout_propose_delta = "500ms"
 # How long we wait after receiving +2/3 prevotes for “anything” (ie. not a single block or nil)
-timeout_prevote = "500ms"
+timeout_prevote = "1s"
 # How much the timeout_prevote increases with each round
-timeout_prevote_delta = "200ms"
+timeout_prevote_delta = "500ms"
 # How long we wait after receiving +2/3 precommits for “anything” (ie. not a single block or nil)
-timeout_precommit = "500ms"
+timeout_precommit = "1s"
 # How much the timeout_precommit increases with each round
-timeout_precommit_delta = "200ms"
+timeout_precommit_delta = "500ms"
 # How long we wait after committing a block, before starting on the new
 # height (this gives us a chance to receive some more precommits, even
 # though we already have +2/3).
-timeout_commit = "1s"
+timeout_commit = "2000ms"
 
 # How many blocks to look back to check existence of the node's consensus votes before joining consensus
 # When non-zero, the node will panic upon restart
@@ -404,7 +409,7 @@ skip_timeout_commit = false
 
 # EmptyBlocks mode and possible interval between empty blocks
 create_empty_blocks = false
-create_empty_blocks_interval = "30s"
+create_empty_blocks_interval = "0s"
 
 # Reactor sleep duration parameters
 peer_gossip_sleep_duration = "100ms"
@@ -451,7 +456,7 @@ psql-conn = ""
 # When true, Prometheus metrics are served under /metrics on
 # PrometheusListenAddr.
 # Check out the documentation for the list of available metrics.
-prometheus = false
+prometheus = true
 
 # Address to listen for Prometheus collector(s) connections
 prometheus_listen_addr = ":26660"
@@ -463,4 +468,4 @@ prometheus_listen_addr = ":26660"
 max_open_connections = 3
 
 # Instrumentation namespace
-namespace = "tendermint"
+namespace = "cometbft"
