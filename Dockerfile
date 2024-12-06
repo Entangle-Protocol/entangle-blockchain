@@ -23,7 +23,7 @@ COPY . .
 RUN make build
 
 # Final image
-FROM alpine:3.18.5
+FROM alpine:3.21.0
 
 RUN adduser -D -u 1001 appuser
 
