@@ -24,7 +24,7 @@ USER4_KEY="user4"
 USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry duck chief aim exit gain never tennis crime fragile ship cloud surface exotic patch"
 
 # remove existing daemon and client
-rm -rf ~/.ethermint*
+rm -rf ~/.entangled*
 
 # Import keys from mnemonics
 echo $VAL_MNEMONIC   | build/entangled keys add $VAL_KEY   --recover --keyring-backend test --algo "eth_secp256k1"
@@ -36,10 +36,10 @@ echo $USER4_MNEMONIC | build/entangled keys add $USER4_KEY --recover --keyring-b
 build/entangled init $MONIKER --chain-id $CHAINID
 
 # Set gas limit in genesis
-cat $HOME/.build/entangled/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.build/entangled/config/tmp_genesis.json && mv $HOME/.build/entangled/config/tmp_genesis.json $HOME/.build/entangled/config/genesis.json
+cat $HOME/.entangled/config/genesis.json | jq '.consensus_params["block"]["max_gas"]="10000000"' > $HOME/.entangled/config/tmp_genesis.json && mv $HOME/.entangled/config/tmp_genesis.json $HOME/.entangled/config/genesis.json
 
 # Reduce the block time to 1s
-sed -i -e '/^timeout_commit =/ s/= .*/= "850ms"/' $HOME/.build/entangled/config/config.toml
+sed -i -e '/^timeout_commit =/ s/= .*/= "850ms"/' $HOME/.entangled/config/config.toml
 
 # Allocate genesis accounts (cosmos formatted addresses)
 build/entangled add-genesis-account "$(build/entangled keys show $VAL_KEY   -a --keyring-backend test)" 1000000000000000000000aNGL,1000000000000000000stake --keyring-backend test
@@ -58,4 +58,4 @@ build/entangled collect-gentxs
 build/entangled validate-genesis
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-build/entangled start --metrics --pruning=nothing --rpc.unsafe --keyring-backend test --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable
+build/entangled start --chain-id entangle_9000-1 --metrics --pruning=nothing --rpc.unsafe --keyring-backend test --log_level info --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable
