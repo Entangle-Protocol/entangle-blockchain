@@ -893,7 +893,7 @@ paths:
               account_number:
                 type: string
                 format: uint64
-                title: account_number is the account numbert
+                title: account_number is the account number
             description: >-
               QueryCosmosAccountResponse is the response type for the
               Query/CosmosAccount
